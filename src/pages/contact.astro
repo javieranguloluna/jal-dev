@@ -1,12 +1,163 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Contacto">
+    <form>
+        <div class="input">
+            <label for="name">
+                <span class="blue">const</span>
+                <span class="light-blue">name</span>
+                 :
+                <span class="green">string</span>
+                 =
+            </label>
+            <input name="name" type="text" />
+            <span>;</span>
+        </div>
+        <div class="input">
+            <label for="email">
+                <span class="blue">const</span>
+                <span class="light-blue">email</span>
+                 :
+                <span class="green">string</span>
+                 =
+            </label>
+            <input name="email" type="email" />
+            <span>;</span>
+        </div>
+        <div class="input">
+            <label for="phone">
+                <span class="blue">const</span>
+                <span class="light-blue">phone</span>
+                 :
+                <span class="green">string</span>
+                 =
+            </label>
+            <input name="phone" type="tel" />
+            <span>;</span>
+        </div>
 
+        <div class="input">
+            <label for="contact">
+                <span class="blue">const</span>
+                <span class="light-blue">contact</span>
+                 :
+                <span class="green">contactMode</span>
+                 =
+            </label>
+            <select name="contact">
+                <option value=""></option>
+                <option value="whatsapp">Whatsapp</option>
+                <option value="phone_call">Phone call</option>
+                <option value="email">Email</option>
+            </select>
+            <span>;</span>
+        </div>
+
+        <div class="textarea">
+            <label for="phone">
+                <span class="blue">const</span>
+                <span class="light-blue">message</span>
+                 :
+                <span class="green">string</span>
+                 =
+                <span class="orange">`</span>
+            </label>
+            <textarea name="message"></textarea>
+            <span>
+                <span class="orange">`</span>
+                <span>;</span>
+            </span>
+        </div>
+        <button>return</button>
+    </form>
 </Layout>
 
-<style>
+<style lang="scss">
+    @import "../styles/global.scss";
 
+    form {
+        max-width: 40rem;
+
+        .input {
+            color: white;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        label {
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+        }
+
+        input,
+        select,
+        textarea {
+            width: calc(100% - 1rem);
+            border-radius: 7px;
+            padding: 0.5rem;
+            background-color: #222;
+            color: $text;
+            border: solid 2px #333;
+        }
+
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: solid 2px $primary;
+        }
+
+        option {
+            color: white;
+            background-color: $primary;
+        }
+
+        option:checked,
+        option:hover {
+            background-color: $secondary;
+        }
+
+        .textarea {
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin: 1rem 0;
+
+            textarea {
+                resize: vertical;
+            }
+
+            div {
+            }
+
+            label {
+                padding: 0.5rem;
+                display: flex;
+                flex-direction: row;
+                gap: 0.5rem;
+            }
+        }
+        button {
+            cursor: pointer;
+            background-color: #222;
+            border: solid 2px #333;
+            color: $ts-pink;
+            padding: 2rem;
+            width: 100%;
+            border-radius: $border-radius;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        button:hover {
+            border-color: $primary;
+        }
+    }
 </style>
