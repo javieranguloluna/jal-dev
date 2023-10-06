@@ -1,0 +1,341 @@
+---
+import { Image } from "astro:assets";
+import logo from '../../public/images/_41b68620-2219-40ca-95da-ef1804f5964e.jfif';
+import proyects from "../styles/icons/apps_FILL0_wght400_GRAD0_opsz24.svg";
+import cv from "../styles/icons/shield_person_FILL0_wght400_GRAD0_opsz24.svg";
+import history from "../styles/icons/update_FILL0_wght400_GRAD0_opsz24.svg";
+import timeline from "../styles/icons/timeline_FILL0_wght400_GRAD0_opsz24.svg";
+import techs from "../styles/icons/sort_FILL0_wght400_GRAD0_opsz24.svg";
+import contact from "../styles/icons/alternate_email_FILL0_wght400_GRAD0_opsz24.svg";
+
+type Page = {
+    name: string;
+    icon: ImageMetadata;
+    path: string;
+    childs?: Page[];
+};
+
+const pages: Page[] = [
+    { name: "proyectos", path: "/projects", icon: proyects },
+    {
+        name: "cv",
+        icon: cv,
+        path: "/cv",
+        childs: [
+            { name: "historia", path: "/cv/history", icon: history },
+            { name: "timeline", path: "/cv/timeline", icon: timeline },
+            { name: "tecnologías", path: "/cv/techs", icon: techs },
+        ],
+    },
+    { name: "contacto", path: "/contact", icon: contact },
+];
+---
+
+<nav class="nav">
+    <a class="logo" href="/">
+        <Image src={logo} alt="logo" width="350" height="350" />
+        <!-- <span class="text-logo">JAL</span> -->
+    </a>
+    <div class="menu">
+        {
+            pages.map((page) =>
+                page.childs ? (
+                    <div class="anchor">
+                        <Image
+                            src={page.icon}
+                            alt=""
+                            width="150"
+                            height="150"
+                        />
+                        <a href={page.path}>{page.name}</a>
+                        <span class="pink">()</span>
+                        <div class="submenu">
+                            {page.childs.map((child) => (
+                                <div class="subanchor">
+                                    <Image
+                                        src={child.icon}
+                                        alt=""
+                                        width="150"
+                                        height="150"
+                                    />
+                                    <a href={child.path}>{child.name}</a>
+                                    <span class="pink">()</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ) : (
+                    <div class="anchor">
+                        <Image
+                            src={page.icon}
+                            alt=""
+                            width="150"
+                            height="150"
+                        />
+                        <a href={page.path}>{page.name}</a>
+                        <span class="pink">()</span>
+                    </div>
+                ),
+            )
+        }
+    </div>
+    <div class="mobile-menu">
+        <div class="menu-button">
+            <span>Menu</span>
+            <div class="menu-dropdown">
+                {
+                    pages.map((page) =>
+                        page.childs ? (
+                            <div class="anchor">
+                                <Image
+                                    src={page.icon}
+                                    alt=""
+                                    width="150"
+                                    height="150"
+                                />
+                                <a href={page.path}>{page.name}</a>
+                                <span class="pink">()</span>
+                                <div class="submenu">
+                                    {page.childs.map((child) => (
+                                        <div class="subanchor">
+                                            <Image
+                                                src={child.icon}
+                                                alt=""
+                                                width="150"
+                                                height="150"
+                                            />
+                                            <a href={child.path}>{child.name}</a>
+                                            <span class="pink">()</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ) : (
+                            <div class="anchor">
+                                <Image
+                                    src={page.icon}
+                                    alt=""
+                                    width="150"
+                                    height="150"
+                                />
+                                <a href={page.path}>{page.name}</a>
+                                <span class="pink">()</span>
+                            </div>
+                        ),
+                    )
+                }
+                </div>
+        </div>
+
+    </div>
+</nav>
+
+<style lang="scss">
+    @import "../styles/global.scss";
+
+    .nav {
+        padding: 0 1rem 0 1rem;
+        background-color: $background;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        z-index: 100;
+        position: relative;
+
+        .text-logo {
+            font-size: 5rem;
+            font-weight: bolder;
+            color: $primary;
+        }
+
+        .logo {
+            text-decoration: none;
+                width: 5rem;
+                height: 5rem;
+                overflow: hidden;
+                display: flex;
+    align-items: center;
+    justify-content: center;
+                border-radius: 100%;
+            img {
+                object-fit: contain;
+                width: 8rem;
+                height: 8rem;
+            }
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: row;
+            margin-right: 1rem;
+
+            .anchor {
+                display: flex;
+                align-items: center;
+                position: relative;
+                border-bottom: solid 3px $secondary;
+                margin: 0 1rem 0 1rem;
+                z-index: 10;
+
+                img {
+                    background-color: white;
+                    border-radius: $border-radius;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                }
+            }
+
+            a {
+                font-size: 1.3rem;
+                margin: 0 0 0 1rem;
+                color: $ts-yellow;
+                text-decoration: none;
+            }
+
+            a:hover {
+                color: $accent;
+            }
+
+            .anchor:hover {
+                border-bottom: solid 3px $primary;
+
+                .submenu {
+                    display: flex;
+                    flex-direction: column;
+                    background-color: $background;
+                    border-left: solid 3px $primary;
+                    padding: 0.5rem;
+                    position: absolute;
+                    top: calc(100% + 3px);
+                    left: -3px;
+
+                    .subanchor {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        a {
+                            margin: 0.5rem;
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+
+            .anchor:hover:has(.submenu) {
+                border-left: solid 3px $primary;
+            }
+
+            .submenu {
+                display: none;
+                z-index: 0;
+            }
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        .nav {
+            .menu {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+                flex-direction: column;
+
+                .menu-button {
+                    padding: 1rem;
+                    .menu-dropdown {
+                        display: none;
+                    }
+                }
+
+                .menu-button:hover {
+                    border-right: solid 3px $secondary;
+                    .menu-dropdown {
+                        padding: 0 1rem;
+                        display: block;
+                        position: absolute;
+                        right: -0.5rem;
+                        top: calc(100% - 2.6rem);
+                        background-color: $background;
+                        border-top-left-radius: $border-radius;
+                        border-bottom-left-radius: $border-radius;
+
+
+                        :first-child:is(.anchor) {
+                            padding-top: 0.5rem;
+                        }
+                        :last-child:is(.anchor) {
+                            padding-top: 0.5rem;
+                        }
+                        
+                    }
+
+
+                }
+
+                .anchor {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    align-items: flex-start;
+                    position: relative;
+                    border-right: solid 3px $secondary;
+                    padding: 0.3rem 0;
+                    z-index: 10;
+
+                    .pink {
+                        margin-top: 0.3rem;
+                    }
+            
+
+                    img {
+                        display: inline-block;
+                        background-color: white;
+                        border-radius: $border-radius;
+                        width: 1.5rem;
+                        height: 1.5rem;
+                    }
+                    .submenu {
+                        display: flex;
+                        flex-direction: column;
+                        margin-top: 2rem;
+                        margin-right: 6px;
+                    }
+                }
+
+                a {
+                font-size: 1.3rem;
+                margin: 0 0 0 1rem;
+                color: $ts-yellow;
+                text-decoration: none;
+            }
+
+            a:hover {
+                color: $accent;
+            }
+
+            .anchor:hover {
+                border-right: solid 3px $primary;
+
+                .submenu {
+
+                    background-color: $background;
+                    border-right: solid 3px $primary;
+                        margin-right: 3px;
+
+                }
+            }
+            }
+
+
+        }
+    }
+
+</style>

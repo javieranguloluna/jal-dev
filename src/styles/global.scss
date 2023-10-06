@@ -1,19 +1,60 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins:700|Poppins:400");
-	
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400|IBM+Plex+Mono:700");
+
+$ts-blue: #2e95d3;
+$ts-light-blue: #59cbe7;
+$ts-green: #00a67d;
+$ts-yellow: #dbc70e;
+$ts-orange: #e9950c;
+$ts-pink: #ca1963;
+.blue {
+	color: $ts-blue;
+}
+.light-blue {
+	color: $ts-light-blue;
+}
+.green {
+	color: $ts-green;
+}
+.yellow {
+	color: $ts-yellow;
+}
+.orange {
+	color: $ts-orange;
+}
+.pink {
+	color: $ts-pink;
+}
+
+
+$space-cadet: #25273Eff;
+$yinmn-blue: #0A5285ff;
+$blue-munsell: #008897ff;
+$turquoise: #08E4CBff;
+$tea-green: #CCF0CAff;
+$sunset: #FDCA79ff;
+$orange-crayola: #EC6E34ff;
+$cardinal: #BE353Dff;
+$murrey: #73294Dff;
+
+
 $text: #e5fbd0;
 $background: #050901;
-$primary: #0b7779;
-$secondary: #10031c;
-$accent: #d71714;
+$primary: $ts-green;
+$secondary: $ts-blue;
+$accent: $ts-pink;
 
+.white {
+	color: $text;
+}
 
     $border-radius: 7px;
 
 	body {
-		font-family: "Poppins";
+		font-family: "IBM Plex Mono";
 		font-weight: 400;
 		color: $text;
 		background-color: $background;
+		margin: 0;
 	}
 
 	h1,
@@ -21,8 +62,17 @@ $accent: #d71714;
 	h3,
 	h4,
 	h5 {
-		font-family: "Poppins";
+		font-family: "IBM Plex Mono";
 		font-weight: 700;
+		margin-block-end: 0.5rem;
+		margin-block-start: 0.5rem;
+
+		color: $secondary;
+	}
+
+	p {
+		margin-block-end: 0.5rem;
+		margin-block-start: 0.5rem;
 	}
 
 	html {
@@ -51,4 +101,19 @@ $accent: #d71714;
 
 	small {
 		font-size: 0.75rem; /* 12px */
+	}
+
+	.console {
+        padding: 1rem;
+        margin: 2rem 0;
+        color: white;
+        font-weight: 700;
+        background-color: #222;
+        border-radius: $border-radius;
+    }
+
+	@media screen and (max-width: 700px) {
+		h1 {
+			font-size: 2rem;
+		}
 	}

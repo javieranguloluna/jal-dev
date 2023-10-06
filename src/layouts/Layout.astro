@@ -1,30 +1,30 @@
 ---
-import type { TransitionAnimation, TransitionDirectionalAnimations } from "astro";
+import type {
+  TransitionAnimation,
+  TransitionDirectionalAnimations,
+} from "astro";
 import { ViewTransitions } from "astro:transitions";
-import { Counter } from "../components/Counter";
+import Nav from "../components/Nav.astro";
 
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 
-
-
 const slideUpAnimation: TransitionAnimation = {
-  name: 'fadeOutUp',
-  duration: '0.2s',
-  easing: 'ease-out',
-  fillMode: 'forwards',
+  name: "fadeOutUp",
+  duration: "0.2s",
+  easing: "ease-out",
+  fillMode: "forwards",
 };
 
 const slideDownAnimation: TransitionAnimation = {
-  name: 'fadeInDown',
-  duration: '0.2s',
-  easing: 'ease-in',
-  fillMode: 'backwards',
+  name: "fadeInDown",
+  duration: "0.2s",
+  easing: "ease-in",
+  fillMode: "backwards",
 };
-
 
 const slideTransition: TransitionDirectionalAnimations = {
   forwards: {
@@ -36,70 +36,86 @@ const slideTransition: TransitionDirectionalAnimations = {
     new: slideUpAnimation,
   },
 };
-
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<ViewTransitions />
-	</head>
-	<body>
-		<main>
-			
-			<h1 transition:animate={slideTransition}>{title}</h1>
-			<a href="/">Home</a>
-			<br>
-			<a href="/other">Other</a>
-			
-			<Counter transition:persist client:visible
-				name="Contador"
-				step={1}
-			/>
-			
-			<slot />
-		</main>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <main>
+      <Nav />
 
-	</body>
+      <h1 transition:animate={slideTransition}>{title}</h1>
+
+      <slot />
+    </main>
+  </body><style is:global lang="scss">
+    @import "../styles/global.scss";
+
+    html {
+      scrollbar-gutter: stable;
+    }
+
+    main {
+      margin: auto;
+      padding: 1rem;
+      width: 800px;
+      max-width: calc(100% - 2rem);
+
+      h1 {
+        margin-left: 1rem;
+        margin-top: 1rem;
+        z-index: 10;
+        position: relative;
+      }
+    }
+
+    @media screen and (max-width: 700px) {
+      main {
+        max-width: calc(100% - 1rem);
+        padding: 1rem 0.5rem 1rem 0.5rem;
+        margin: 0;
+      }
+    }
+
+    @keyframes fadeOutUp {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      100% {
+        opacity: 0;
+      }
+      70% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+      }
+      70% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
 </html>
-<style is:global lang="scss">
-	@import "../styles/global.scss";
-
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		font-size: 20px;
-		line-height: 1.6;
-	}
-
-	/* Animación para desplazar hacia arriba (fadeOutUp) */
-@keyframes fadeOutUp {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-}
-
-/* Animación para desplazar hacia abajo (fadeInDown) */
-@keyframes fadeInDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-</style>

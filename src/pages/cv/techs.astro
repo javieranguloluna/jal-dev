@@ -1,0 +1,246 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+import logo from "../../../public/favicon.svg";
+import js from "../../../public/images/JavaScript-logo.png";
+import ts from "../../../public/images/Typescript_logo_2020.svg.png";
+import html from "../../../public/images/html-logo.png";
+import css from "../../../public/images/CSS3_logo.svg.png";
+import angular from "../../../public/images/Angular_full_color_logo.svg.png";
+import git from "../../../public/images/Git-Icon-1788C.png";
+import rxjs from "../../../public/images/Rx_Logo-512-512.png";
+import ngrx from "../../../public/images/ngrx.svg";
+import firebase from "../../../public/images/firebase-logo.png";
+import ionic from "../../../public/images/ionic.avif";
+import nestjs from "../../../public/images/NestJS.svg.png";
+import shopify from "../../../public/images/shopify-logo-png-transparent.png";
+import wordpress from "../../../public/images/Wordpress_Blue_logo.png";
+import node from "../../../public/images/nodejs-logo.png";
+
+type Tech = {
+    name: string;
+    level: number;
+    icon: ImageMetadata;
+};
+
+const techs: Tech[] = [
+    {
+        name: "HTML",
+        icon: html,
+        level: 6,
+    },
+    {
+        name: "CSS",
+        icon: css,
+        level: 7,
+    },
+    {
+        name: "JavaScript",
+        icon: js,
+        level: 8,
+    },
+    {
+        name: "TypeScript",
+        icon: ts,
+        level: 9,
+    },
+    {
+        name: "Node.js",
+        icon: node,
+        level: 7,
+    },
+    {
+        name: "Angular",
+        icon: angular,
+        level: 9,
+    },
+    {
+        name: "Firebase",
+        icon: firebase,
+        level: 8,
+    },
+    {
+        name: "Ionic",
+        icon: ionic,
+        level: 5, // Ajusta el nivel según tu experiencia.
+    },
+    {
+        name: "RxJS",
+        icon: rxjs,
+        level: 8, // Ajusta el nivel según tu experiencia.
+    },
+    {
+        name: "NgRx",
+        icon: ngrx,
+        level: 6, // Ajusta el nivel según tu experiencia.
+    },
+    {
+        name: "Shopify",
+        icon: shopify,
+        level: 6, // Ajusta el nivel según tu experiencia.
+    },
+    {
+        name: "WordPress",
+        icon: wordpress,
+        level: 4, // Ajusta el nivel según tu experiencia.
+    },
+    {
+        name: "Git",
+        icon: git,
+        level: 6, // Ajusta el nivel según tu experiencia.
+    },
+    {
+        name: "Nest.js",
+        icon: nestjs,
+        level: 2, // Ajusta el nivel según tu experiencia.
+    },
+];
+---
+
+<Layout title="Tecnologías">
+    <div class="tech-wrapper">
+        {
+            techs.map((tech) => (
+                <div class="tech">
+                    <div class="header">
+                        <Image
+                            src={tech.icon}
+                            alt={tech.name}
+                            width="50"
+                            height="50"
+                        />
+                        <span>{tech.name}</span>
+                    </div>
+                    <div class={`level-${tech.level}`} />
+                </div>
+            ))
+        }
+    </div>
+</Layout>
+
+<style lang="scss">
+    @import "../../styles/global.scss";
+
+    .tech-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .tech {
+            padding: 1rem;
+            margin: 1rem;
+
+            width: 10rem;
+
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+
+            background-color: $background;
+            border-radius: $border-radius;
+
+            cursor: default;
+            box-shadow: 0px 0px 5px $secondary;
+            transition:
+                transform 0.3s ease-in-out,
+                box-shadow 0.3s ease-in-out;
+
+            animation: reveal ease-in-out both;
+            animation-timeline: view();
+
+            .header {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                margin-bottom: 1rem;
+
+                img {
+                    border-radius: $border-radius;
+                }
+            }
+
+            @for $i from 1 through 10 {
+                .level-#{$i} {
+                    width: 100%;
+                    background: linear-gradient(
+                        90deg,
+                        $ts-green 0%,
+                        $ts-green #{$i * 10%},
+                        transparent #{($i * 10%) + 0.1},
+                        transparent 100%
+                    );
+                    height: 5px;
+                    border-radius: $border-radius;
+                    border: solid 1px $ts-green;
+
+                }
+            }
+        }
+
+        .tech:hover {
+            transform: scale(1.01);
+            box-shadow: 0px 0px 10px $primary;
+        }
+    }
+
+
+    @keyframes reveal {
+        from {
+            opacity: 0;
+            scale: 0.8;
+        }
+        to {
+            opacity: 1;
+            scale: 1;
+        }
+        10% {
+            opacity: 0;
+            scale: 0.8;
+        }
+        23% {
+            opacity: 1;
+            scale: 1;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+		.tech-wrapper .tech {
+			width: 7rem;
+            margin: 0.4rem;
+            .header {
+                gap: 0.5rem;
+
+                span {
+                    font-size: 13px;
+                }
+
+                img {
+                    width: 25px;
+                    height: 25px;
+                    border-radius: $border-radius;
+                }
+            }
+		}
+
+        @keyframes reveal {
+            from {
+                opacity: 0;
+                scale: 0.8;
+            }
+            to {
+                opacity: 1;
+                scale: 1;
+            }
+            5% {
+                opacity: 0;
+                scale: 0.8;
+            }
+            10% {
+                opacity: 1;
+                scale: 1;
+            }
+        }
+	}
+
+</style>
