@@ -34,7 +34,7 @@ const elements = [
         title: "Simonetta Floral",
         text: "Desarrollo web con Shopify para tienda online de ramos de flores preservadas",
         image: "",
-        year: "2022 - Actualmente",
+        year: "2022...",
         type: "Experiencia",
     },
 ];
@@ -51,8 +51,16 @@ const timlineHeight = `${elements.length * 22}rem`;
                     .map((el) => (
                         <div class="element">
                             <div class="content">
-                                <div>
-                                    <span class={el.type === 'Formación' ? 'formation' : 'experience'}>{el.type}</span>
+                                <div class="badges">
+                                    <span
+                                        class={
+                                            el.type === "Formación"
+                                                ? "formation"
+                                                : "experience"
+                                        }
+                                    >
+                                        {el.type}
+                                    </span>
                                     <span>{el.year}</span>
                                 </div>
                                 <h4>{el.title}</h4>
@@ -79,8 +87,16 @@ const timlineHeight = `${elements.length * 22}rem`;
                                 <div class="conexion" />
                             </div>
                             <div class="content">
-                                <div>
-                                    <span class={el.type === 'Formación' ? 'formation' : 'experience'}>{el.type}</span>
+                                <div class="badges">
+                                    <span
+                                        class={
+                                            el.type === "Formación"
+                                                ? "formation"
+                                                : "experience"
+                                        }
+                                    >
+                                        {el.type}
+                                    </span>
                                     <span>{el.year}</span>
                                 </div>
                                 <h4>{el.title}</h4>
@@ -100,9 +116,34 @@ const timlineHeight = `${elements.length * 22}rem`;
     $margin: 3rem;
     $distance: 15rem;
 
-    @media screen and (max-with: 600px) {
+    @media screen and (max-width: 600px) {
+        
         $margin: 10rem;
-        $distance: 100rem;
+        $distance: 15rem;
+
+        div.line-wrapper {
+            height: 140rem !important;
+            .side {
+                .element {
+                    .content {
+                        max-width: 30vw;
+
+                        &:hover {
+                            transform: scale(1.03);
+                        }
+
+                        .badges {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.3rem;
+                            align-items: center;
+                            width: 100%;
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .line-wrapper {
@@ -133,6 +174,8 @@ const timlineHeight = `${elements.length * 22}rem`;
 
                 .content {
                     width: max-content;
+
+                    max-width: 300px;
                     height: 100%;
                     display: flex;
                     flex-direction: column;
@@ -147,14 +190,16 @@ const timlineHeight = `${elements.length * 22}rem`;
                     cursor: default;
                     box-shadow: 0px 0px 5px $secondary;
 
-                    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+                    transition:
+                        transform 0.3s ease-in-out,
+                        box-shadow 0.3s ease-in-out;
 
                     div {
                         width: max-content;
                         margin-bottom: 1rem;
                         span {
                             border-radius: $border-radius;
-                            background-color: $accent;
+                            background-color: $ts-pink;
                             padding: 0.2rem 0.5rem;
                             margin-right: 1rem;
                         }
@@ -171,7 +216,7 @@ const timlineHeight = `${elements.length * 22}rem`;
 
                 .content:hover {
                     transform: scale(1.1);
-                    box-shadow: 0px 0px 10px $primary;
+                    box-shadow: 0px 0px 10px $ts-green;
                 }
 
                 .conexion-wrapper {
@@ -196,10 +241,15 @@ const timlineHeight = `${elements.length * 22}rem`;
             .element {
                 .conexion-wrapper {
                     justify-content: flex-start;
-                }
-                .conexion {
-                    background: linear-gradient(90deg, $secondary, $accent 90%);
-                    border-radius: 0 $border-radius $border-radius 0;
+
+                    .conexion {
+                        background: linear-gradient(
+                            90deg,
+                            $ts-blue,
+                            $ts-pink 90%
+                        );
+                        border-radius: 0 $border-radius $border-radius 0;
+                    }
                 }
             }
         }
@@ -211,11 +261,15 @@ const timlineHeight = `${elements.length * 22}rem`;
             .element {
                 .conexion-wrapper {
                     justify-content: flex-end;
-                }
-                .conexion {
-                    float: right;
-                    background: linear-gradient(90deg, $accent 10%, $secondary);
-                    border-radius: $border-radius 0 0 $border-radius;
+                    .conexion {
+                        float: right;
+                        background: linear-gradient(
+                            90deg,
+                            $ts-pink 10%,
+                            $ts-blue
+                        );
+                        border-radius: $border-radius 0 0 $border-radius;
+                    }
                 }
             }
         }
@@ -231,7 +285,7 @@ const timlineHeight = `${elements.length * 22}rem`;
             width: 30px;
             height: 30px;
             min-height: 30px;
-            background-color: $accent;
+            background-color: $ts-pink;
 
             display: flex;
             flex-direction: column-reverse;
@@ -240,7 +294,7 @@ const timlineHeight = `${elements.length * 22}rem`;
             .line-end {
                 width: 45px;
                 height: 45px;
-                background-color: $accent;
+                background-color: $ts-pink;
                 border-radius: 100%;
 
                 font-weight: bold;
@@ -257,8 +311,6 @@ const timlineHeight = `${elements.length * 22}rem`;
             animation-timeline: scroll();
         }
     }
-
-
 
     @keyframes explode {
         from {
