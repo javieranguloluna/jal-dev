@@ -12,8 +12,10 @@ import Layout from "../layouts/Layout.astro";
                 <span class="green">string</span>
                  =
             </label>
+            <div class="wrapper">
             <input name="name" type="text" />
             <span>;</span>
+        </div>
         </div>
         <div class="input">
             <label for="email">
@@ -23,8 +25,10 @@ import Layout from "../layouts/Layout.astro";
                 <span class="green">string</span>
                  =
             </label>
+            <div class="wrapper">
             <input name="email" type="email" />
             <span>;</span>
+        </div>
         </div>
         <div class="input">
             <label for="phone">
@@ -34,8 +38,10 @@ import Layout from "../layouts/Layout.astro";
                 <span class="green">string</span>
                  =
             </label>
-            <input name="phone" type="tel" />
-            <span>;</span>
+            <div class="wrapper">
+                <input name="phone" type="tel" />
+                <span>;</span>
+            </div>
         </div>
 
         <div class="input">
@@ -46,6 +52,7 @@ import Layout from "../layouts/Layout.astro";
                 <span class="green">contactMode</span>
                  =
             </label>
+            <div class="wrapper">
             <select name="contact">
                 <option value=""></option>
                 <option value="whatsapp">Whatsapp</option>
@@ -53,6 +60,7 @@ import Layout from "../layouts/Layout.astro";
                 <option value="email">Email</option>
             </select>
             <span>;</span>
+        </div>
         </div>
 
         <div class="textarea">
@@ -77,8 +85,17 @@ import Layout from "../layouts/Layout.astro";
 <style lang="scss">
     @import "../styles/global.scss";
 
+    @media screen and (max-width: 700px) {
+        form {
+            div.input {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    }
+
     form {
-        max-width: 40rem;
 
         .input {
             color: white;
@@ -87,6 +104,12 @@ import Layout from "../layouts/Layout.astro";
             align-items: center;
             gap: 0.5rem;
             margin: 1rem 0;
+
+            .wrapper {
+                    width: 100%;
+                    display: flex;
+                    gap: 5px;
+                }
         }
 
         label {
@@ -133,6 +156,8 @@ import Layout from "../layouts/Layout.astro";
 
             textarea {
                 resize: vertical;
+                min-height: 3rem;
+                max-height: 10rem;
             }
 
             div {
