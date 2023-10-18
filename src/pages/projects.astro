@@ -1,32 +1,38 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+import simonettaLogo from "../../public/images/Simonetta-logo-Black.webp";
+import npmLogo from "../../public/images/npm_icon_213005.png";
+import shopinLogo from "../../public/images/shopin-logo.png";
+import mandelbrotLogo from "../../public/images/mandelbrot.png";
 
 const proyects = [
     {
         name: "Simonetta Floral",
         link: "https://simonettafloral.com/",
-        logo: "../../public/images/Simonetta-logo-Black.webp",
+        logo: simonettaLogo,
         style: "padding: 1rem; background-color: white;",
         content: "Shopify E-commerce dedicado a las flores preservadas, ramos de novia, centros de mesa...",
     },
     {
         name: "Json-GPT",
         link: "https://www.npmjs.com/package/json-gpt",
-        logo: "../../public/images/npm_icon_213005.png",
+        logo: npmLogo,
         style: "padding: 1rem; background-color: white;",
         content: "Json-GPT es una librería para Node.js escrita en TypeScript que proporciona una interfaz para interactuar con el modelo de lenguaje GPT-3.5-turbo de OpenAI. Con Json-GPT, puedes realizar solicitudes a GPT-3.5-turbo para resolver preguntas, generar texto, mantener conversaciones en tiempo real y mucho más, todo ello usando objetos JSON.",
     },
     {
         name: "Shopin",
         link: "https://github.com/shopin-dev/shopin-mockup",
-        logo: "../../public/images/shopin-logo.png",
+        logo: shopinLogo,
         style: "padding: 0;",
         content: "Plataforma multiapp en monolito Nx con Angular + Ionic. Busca tus productos favoritos cerca de tí!",
     },    
     {
         name: "Mandelbrot",
         link: "https://mandelbrot-c8e38.firebaseapp.com/",
-        logo: "../../public/images/mandelbrot.png",
+        logo: mandelbrotLogo,
         style: "",
         content: "App Angular alojada en firebase para generación de imagenes del conjunto de Mandelbrot",
     },
@@ -39,10 +45,7 @@ const proyects = [
             <a href={p.link} target="_blank" class="card">
                 <h2 class="card-title">
                     <div class="image" style={p.style}>
-                        <img
-                            src={p.logo}
-                            alt={p.name + ' logo'}
-                        />
+                        <Image src={p.logo} alt={p.name + ' logo'} />
                     </div>
                     {p.name}
                 </h2>
@@ -85,6 +88,10 @@ const proyects = [
                 box-sizing: border-box;
                 width: 6rem;
                 height: 6rem;
+                min-width: 6rem;
+                min-height: 6rem;
+                max-width: 6rem;
+                max-height: 6rem;
                 img {
                     width: 100%;
                     height: 100%;
