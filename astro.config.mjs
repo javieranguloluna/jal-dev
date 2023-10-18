@@ -7,5 +7,6 @@ export default defineConfig({
   integrations: [preact()],
   image: {
     domains: ["jal-dev.vercel.app"]
-  }
+  },
+  output: "hybrid"
 });
