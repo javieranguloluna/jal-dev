@@ -1,12 +1,110 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
+const proyects = [
+    {
+        name: "Simonetta Floral",
+        link: "https://simonettafloral.com/",
+        logo: "../../public/images/Simonetta-logo-Black.webp",
+        style: "padding: 1rem; background-color: white;",
+        content: "Shopify E-commerce dedicado a las flores preservadas, ramos de novia, centros de mesa...",
+    },
+    {
+        name: "Json-GPT",
+        link: "https://www.npmjs.com/package/json-gpt",
+        logo: "../../public/images/npm_icon_213005.png",
+        style: "padding: 1rem; background-color: white;",
+        content: "Json-GPT es una librería para Node.js escrita en TypeScript que proporciona una interfaz para interactuar con el modelo de lenguaje GPT-3.5-turbo de OpenAI. Con Json-GPT, puedes realizar solicitudes a GPT-3.5-turbo para resolver preguntas, generar texto, mantener conversaciones en tiempo real y mucho más, todo ello usando objetos JSON.",
+    },
+    {
+        name: "Shopin",
+        link: "https://github.com/shopin-dev/shopin-mockup",
+        logo: "../../public/images/shopin-logo.png",
+        style: "padding: 0;",
+        content: "Plataforma multiapp en monolito Nx con Angular + Ionic. Busca tus productos favoritos cerca de tí!",
+    },    
+    {
+        name: "Mandelbrot",
+        link: "https://mandelbrot-c8e38.firebaseapp.com/",
+        logo: "../../public/images/mandelbrot.png",
+        style: "",
+        content: "App Angular alojada en firebase para generación de imagenes del conjunto de Mandelbrot",
+    },
+];
 ---
 
 <Layout title="Proyectos">
+    {
+        proyects.map((p) => (
+            <a href={p.link} target="_blank" class="card">
+                <h2 class="card-title">
+                    <div class="image" style={p.style}>
+                        <img
+                            src={p.logo}
+                            alt={p.name + ' logo'}
+                        />
+                    </div>
+                    {p.name}
+                </h2>
+                <div class="card-content">
+                    {p.content}
+                </div>
+            </a>
+        ))
+    }
 
 </Layout>
 
-<style>
+<style lang="scss">
+    @import "../styles/global.scss";
 
+    a.card {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: $text;
+        padding: 2rem;
+        margin: 2rem 0;
+        background-color: $background;
+        border-radius: $border-radius;
+        cursor: pointer;
+        box-shadow: 0px 0px 5px $secondary;
+        transition:
+            transform 0.3s ease-in-out,
+            box-shadow 0.3s ease-in-out;
+
+        .card-title {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+            .image {
+                display: inline-block;
+                border-radius: $border-radius;
+                overflow: hidden;
+                box-sizing: border-box;
+                width: 6rem;
+                height: 6rem;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+        .card-content {
+            margin: 1rem 0;
+        }
+    }
+
+    a.card:hover {
+        transform: scale(1.01);
+        box-shadow: 0px 0px 10px $primary;
+    }
+
+    @media screen and (max-width: 700px) {
+        h2.card-title {
+            font-size: 2rem;
+        }
+    }
 </style>
