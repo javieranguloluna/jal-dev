@@ -60,9 +60,6 @@ export const POST: APIRoute = async ({ request }) => {
 
     try {
         const data = await request.json();
-        console.log(data)
-
-        // formFields = data
 
         const notion = await sendForm(data)
         const jsonNotion = await notion.json()

@@ -3,6 +3,9 @@ import './SuperButton.scss';
 
 import { type TargetedEvent } from 'preact/compat';
 
+
+export const prerender = false;
+
 type FormStatus = 'pristine' | 'loading' | 'done' | 'error'
 
 interface ContactForm {
@@ -44,12 +47,7 @@ export const SuperForm = (props: { fields: ContactFormFields }) => {
             })
     
             setTimeout(() => {
-                console.log(form)
                 sendForm(form.fields)
-                updateForm({
-                    ...form,
-                    status: 'error'
-                })
             },2000)
         }
     }
@@ -66,12 +64,21 @@ export const SuperForm = (props: { fields: ContactFormFields }) => {
           })
             .then(response => response.json())
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 if (response.notion.id) {
-                    alert(`Hemos recibido tus datos. Tu id de solicitud es ${response.notion.id}`)
+                    updateForm({
+                        ...form,
+                        status: 'done'
+                    })
                 }
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err)
+                updateForm({
+                    ...form,
+                    status: 'error'
+                })
+            });
     }
 
     const handleChange = (event: TargetedEvent<HTMLFormElement, Event>): void => {
