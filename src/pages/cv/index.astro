@@ -1,12 +1,45 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-
 ---
 
 <Layout title="Curriculum Vitae">
 
+    <a href="cv/history" class="card">
+        <h2 class="card-title">Historia</h2>
+        <div class="card-content">Lee mi historia</div>
+    </a>
+    <a href="cv/timeline" class="card">
+        <h2 class="card-title">Timeline</h2>
+        <div class="card-content">El paso del tiempo...</div>
+    </a>
+    <a href="cv/techs" class="card">
+        <h2 class="card-title">Tecnologías</h2>
+        <div class="card-content">¿Qué tecnologías manejo?</div>
+    </a>
 </Layout>
 
-<style>
+<style lang="scss">
+    @import '../../styles/global.scss';
+
+    a.card {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: $text;
+        padding: 2rem;
+        margin: 2rem 0;
+        background-color: $background;
+        border-radius: $border-radius;
+        cursor: pointer;
+        box-shadow: 0px 0px 5px $secondary;
+        transition:
+            transform 0.3s ease-in-out,
+            box-shadow 0.3s ease-in-out;
+    }
+
+    a.card:hover {
+        transform: scale(1.01);
+        box-shadow: 0px 0px 10px $primary;
+    }
 
 </style>
