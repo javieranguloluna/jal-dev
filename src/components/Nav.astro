@@ -132,7 +132,7 @@ const pages: Page[] = [
     </div>
     <div class="links">
         <a href="https://www.linkedin.com/in/ja-luna-aa0782297/" target="_blank">
-            <Image class="linkedin" src={linkedin} alt="linkedin" width="50" height="50" />
+            <Image class="inverted" src={linkedin} alt="linkedin" width="50" height="50" />
         </a>
         <a href="https://github.com/javieranguloluna" target="_blank">
             <Image src={github} alt="github" width="50" height="50" />
@@ -252,9 +252,8 @@ const pages: Page[] = [
             flex-direction: row;
             gap: 0.5rem;
             a {
-                .linkedin {
+                .inverted {
                     filter: invert(100%);
-                    border-radius: 5px;
                 }
                 img {
                     width: 30px;
