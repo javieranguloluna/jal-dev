@@ -8,6 +8,7 @@ import timeline from "../styles/icons/timeline_FILL0_wght400_GRAD0_opsz24.svg";
 import techs from "../styles/icons/sort_FILL0_wght400_GRAD0_opsz24.svg";
 import contact from "../styles/icons/alternate_email_FILL0_wght400_GRAD0_opsz24.svg";
 import github from "../../public/images/github-mark-white.png";
+import linkedin from "../../public/images/linkedin-logo.png";
 
 type Page = {
     name: string;
@@ -130,9 +131,9 @@ const pages: Page[] = [
 
     </div>
     <div class="links">
-        <!-- <a href="https://github.com/javieranguloluna" target="_blank">
-            <Image src={github} alt="github" width="50" height="50" />
-        </a> -->
+        <a href="https://www.linkedin.com/in/ja-luna-aa0782297/" target="_blank">
+            <Image class="linkedin" src={linkedin} alt="linkedin" width="50" height="50" />
+        </a>
         <a href="https://github.com/javieranguloluna" target="_blank">
             <Image src={github} alt="github" width="50" height="50" />
         </a>
@@ -250,17 +251,24 @@ const pages: Page[] = [
             display: flex;
             flex-direction: row;
             gap: 0.5rem;
-            img {
-                width: 30px;
-                height: 30px;
-                border-radius: 100%;
+            a {
+                .linkedin {
+                    filter: invert(100%);
+                    border-radius: 5px;
+                }
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 100%;
 
-                &:hover {
-                    box-shadow: 0px 0px 10px $secondary;
-                    transition:
-                        box-shadow 0.1s ease-in-out;
+                    &:hover {
+                        box-shadow: 0px 0px 10px $secondary;
+                        transition:
+                            box-shadow 0.1s ease-in-out;
+                    }
                 }
             }
+
 
 
         }
