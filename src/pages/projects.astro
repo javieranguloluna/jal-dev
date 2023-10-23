@@ -8,42 +8,79 @@ import shopinLogo from "../../public/images/shopin-logo.png";
 import gameoflifeLogo from "../../public/images/1024px-Game_of_life_loaf.svg.png";
 import mandelbrotLogo from "../../public/images/mandelbrot.png";
 
-
 const proyects = [
     {
         name: "Simonetta Floral",
         link: "https://simonettafloral.com/",
         logo: simonettaLogo,
         style: "padding: 1rem; background-color: white;",
-        content: "Shopify E-commerce dedicado a las flores preservadas, ramos de novia, centros de mesa...",
+        content:
+            "Shopify E-commerce dedicado a las flores preservadas, ramos de novia, centros de mesa...",
+        techs: [
+            { class: "platform", text: "Shopify" },
+            { class: "language", text: "Javascript" },
+            { class: "language", text: "HTML" },
+            { class: "language", text: "CSS" }
+        ],
     },
     {
         name: "Json-GPT",
         link: "https://www.npmjs.com/package/json-gpt",
         logo: npmLogo,
         style: "padding: 1rem; background-color: white;",
-        content: "Json-GPT es una librería para Node.js escrita en TypeScript que proporciona una interfaz para interactuar con el modelo de lenguaje GPT-3.5-turbo de OpenAI. Con Json-GPT, puedes realizar solicitudes a GPT-3.5-turbo para resolver preguntas, generar texto, mantener conversaciones en tiempo real y mucho más, todo ello usando objetos JSON.",
+        content:
+            "Json-GPT es una librería para Node.js escrita en TypeScript que proporciona una interfaz para interactuar con el modelo de lenguaje GPT-3.5-turbo de OpenAI. Con Json-GPT, puedes realizar solicitudes a GPT-3.5-turbo para resolver preguntas, generar texto, mantener conversaciones en tiempo real y mucho más, todo ello usando objetos JSON.",
+        techs: [
+            { class: "platform", text: "npm" },
+            { class: "language", text: "Typescript" },
+            { class: "lib", text: "Zod" },
+            { class: "API", text: "Open AI" },
+        ],
     },
     {
         name: "Shopin",
         link: "https://github.com/shopin-dev/shopin-mockup",
         logo: shopinLogo,
         style: "padding: 0;",
-        content: "Plataforma multiapp en monolito Nx con Angular + Ionic. Busca tus productos favoritos cerca de tí!",
-    },    
+        content:
+            "Plataforma multiapp en monolito Nx con Angular + Ionic. Busca tus productos favoritos cerca de tí!",
+        techs: [
+            { class: "platform", text: "Firebase" },
+            { class: "workspace", text: "Nrwl Nx" },
+            { class: "language", text: "Typescript" },
+            { class: "framework", text: "Angular" },
+            { class: "framework", text: "Ionic" },
+            { class: "lib", text: "Angular Material" },
+            { class: "lib", text: "RxJs" },
+            { class: "API", text: "Google Maps" },
+            { class: "API", text: "Algolia" },
+        ],
+    },
     {
         name: "Game of life",
         link: "https://gameoflife-taupe.vercel.app/",
         logo: gameoflifeLogo,
         style: "",
-        content: "App Angular alojada en vercel con el cásico juego the la vida de Conway",
-    },   
+        content:
+            "App Angular alojada en vercel con el cásico juego the la vida de Conway",
+        techs: [
+            { class: "platform", text: "Vercel" },
+            { class: "language", text: "Typescript" },
+            { class: "framework", text: "Angular" },
+        ],
+    },
     {
         name: "Mandelbrot",
         link: "https://mandelbrot-c8e38.firebaseapp.com/",
         logo: mandelbrotLogo,
         style: "",
-        content: "App Angular alojada en firebase para generación de imagenes del conjunto de Mandelbrot",
+        content:
+            "App Angular alojada en firebase para generación de imagenes del conjunto de Mandelbrot",
+        techs: [
+            { class: "platform", text: "Firebase" },
+            { class: "language", text: "Typescript" },
+            { class: "framework", text: "Angular" },
+        ],
     },
 ];
 ---
@@ -54,17 +91,21 @@ const proyects = [
             <a href={p.link} target="_blank" class="card">
                 <h2 class="card-title">
                     <div class="image" style={p.style}>
-                        <Image src={p.logo} alt={p.name + ' logo'} />
+                        <Image src={p.logo} alt={p.name + " logo"} />
                     </div>
                     {p.name}
                 </h2>
                 <div class="card-content">
-                    {p.content}
+                    <p>{p.content}</p>
+                    <div class="techs">
+                        {p.techs.map((t) => (
+                            <span class={`tech ${t.class}`}>{t.text}</span>
+                        ))}
+                    </div>
                 </div>
             </a>
         ))
     }
-
 </Layout>
 
 <style lang="scss">
@@ -75,7 +116,7 @@ const proyects = [
         flex-direction: column;
         text-decoration: none;
         color: $text;
-        padding: 2rem;
+        padding: 1rem;
         margin: 2rem 0;
         background-color: $background;
         border-radius: $border-radius;
@@ -110,6 +151,37 @@ const proyects = [
         }
         .card-content {
             margin: 1rem 0;
+
+            .techs {
+                display: flex;
+                gap: 0.4rem;
+                flex-wrap: wrap;
+                margin-top: 1rem;
+                .tech {
+                    padding: 0.2rem 0.8rem;
+                    border-radius: 20px;
+                    line-height: 1rem;
+                }
+
+                .platform {
+                    border: solid 2px $ts-orange;
+                }
+                .language {
+                    background-color: $ts-green;
+                }
+                .workspace {
+                    background-color: $ts-blue;
+                }
+                .framework {
+                    background-color: $ts-pink;
+                }
+                .lib {
+                    border: solid 2px white;
+                }
+                .API {
+                    border: solid 2px $ts-yellow;
+                }
+            }
         }
     }
 
