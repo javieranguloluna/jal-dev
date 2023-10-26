@@ -10,5 +10,7 @@ export default defineConfig({
     domains: ["jal-dev.vercel.app"]
   },
   output: "hybrid",
-  adapter: vercel()
+  adapter: vercel({
+    functionPerRoute: true,
+  })
 });
