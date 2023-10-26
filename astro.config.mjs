@@ -9,7 +9,7 @@ export default defineConfig({
   image: {
     domains: ["jal-dev.vercel.app"]
   },
-  output: "server",
+  output: "hybrid",
   adapter: vercel({
     functionPerRoute: true,
   })
