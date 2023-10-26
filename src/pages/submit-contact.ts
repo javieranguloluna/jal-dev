@@ -1,5 +1,7 @@
 import type { APIRoute } from "astro";
 
+export const prerrender = false;
+
 const sendForm = (fields: any): any => {
     var myHeaders = new Headers();
     myHeaders.append("notion-version", "2022-06-28");
