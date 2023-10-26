@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 
-export const prerrender = false;
+export const prerrender = true;
 
 const sendForm = (fields: any): any => {
     var myHeaders = new Headers();
