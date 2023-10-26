@@ -1,0 +1,93 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import avatar from "../../public/images/_41b68620-2219-40ca-95da-ef1804f5964e.jfif";
+---
+
+<Layout title="J.A.L.">
+    <div class="code-card">
+        <div>title</div>
+        <ol class="code-editor">
+            <li><span class="code"><span class="green">Javier Angulo de Luna</span></span></li>
+            <li><span class="code"><span class="blue">Hola Mundo!</span></span></li>
+            <li><span class="code">&lt;body&gt;...&lt;/body&gt;</span></li>
+            <li><span class="code">&lt;/html&gt;</span></li>
+        </ol>
+        <div>footer</div>
+    </div>
+
+    <div class="ide-card">
+        <div class="code-card">
+            <ol class="code-editor">
+                <li><span class="code"><span class="green">Javier Angulo de Luna</span></span></li>
+                <li><span class="code"><span class="blue">Hola Mundo!</span></span></li>
+                <li><span class="code">&lt;body&gt;...&lt;/body&gt;</span></li>
+                <li><span class="code">&lt;/html&gt;</span></li>
+            </ol>
+        </div>
+        <div class="web view">
+            <Image
+            src={avatar}
+            alt=""
+            width="150"
+            height="150"
+        />
+        </div>
+    </div>
+
+</Layout>
+
+<style lang="scss">
+    @import "../styles/global.scss";
+
+    .ide-card {
+        display: flex;
+        div {
+            width: 50%;
+            img {
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+
+    .code-card {
+        div {
+            background-color: red;
+        }
+        border-radius: $border-radius;
+        padding: 0;
+        overflow: hidden;
+
+        ol.code-editor {
+            counter-reset: line-number;
+            list-style-type: none;
+            font-family: monospace;
+            background: #f0f0f0;
+            padding: 0;
+            margin: 0;
+
+            li {
+                counter-increment: line-number;
+                line-height: 1.5;
+                .code {
+                    display: inline-block;
+                    background-color: #333;
+                    width: calc(100% - 40px);
+                    padding-left: 10px;
+                }
+
+                &::before {
+                    content: counter(line-number);
+                    display: inline-block;
+                    width: 20px;
+                    color: #888;
+                    text-align: right;
+                    padding-right: 10px;
+                }
+            }
+
+        }
+
+    }
+</style>

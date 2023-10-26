@@ -43,6 +43,31 @@ $primary: $ts-green;
 $secondary: $ts-blue;
 $accent: $ts-pink;
 
+$jal-blue: #07112C;
+$jal-green: #50FBE2;
+$jal-purple: #566EB4;
+$jal-pink: #CD74B6;
+
+$paua-bg: #18181B;
+$paua-dark-grey: #424242;
+$paua-light-grey: #7B7B7B;
+
+$paua-50: #f1f1ff;
+$paua-100: #e7e5ff;
+$paua-200: #d0ceff;
+$paua-300: #aea7ff;
+$paua-400: #8776ff;
+$paua-500: #613fff;
+$paua-600: #4e18ff;
+$paua-700: #3f07fa;
+$paua-800: #3405d2;
+$paua-900: #2c06ac;
+$paua-950: #12005e;
+
+
+$border-radius: 8px;
+$mobile-breakpoint: 700px;
+
 .white {
 	color: $text;
 }
@@ -53,7 +78,6 @@ $accent: $ts-pink;
 		font-family: "IBM Plex Mono";
 		font-weight: 400;
 		color: $text;
-		background-color: $background;
 		margin: 0;
 	}
 

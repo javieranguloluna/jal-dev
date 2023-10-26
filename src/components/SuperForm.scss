@@ -1,15 +1,24 @@
 @import '../styles/global.scss';
 
 @media screen and (max-width: 700px) {
-    div.field .field-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+    div.field {
+        margin: 1rem;
+        .field-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+    button.superbutton {
+        box-sizing: border-box;
+        margin: 0 1rem;
+        width: calc(100% - 2rem);
     }
 }
 
 .field {
-    margin: 1rem 0;
+    max-width: 700px;
+    margin: 1rem auto;
 
     .field-wrapper {
         color: white;
@@ -39,22 +48,22 @@
                 width: calc(100% - 1rem);
                 border-radius: 7px;
                 padding: 0.5rem;
-                background-color: #222;
+                background-color: $paua-dark-grey;
                 color: $text;
-                border: solid 2px #333;
+                border: solid 2px $paua-light-grey;
                 outline: solid 2px transparent;
             }
 
             input:focus-visible,
             select:focus-visible,
             textarea:focus-visible {
-                outline: solid 2px $primary;
+                outline: solid 2px $paua-800;
             }
 
             input.error,
             select.error,
             textarea.error {
-                outline: solid 2px $ts-pink;
+                outline: solid 2px $orange-crayola;
                 margin: 0;
             }
 
@@ -74,7 +83,7 @@
         width: calc(100% - 2rem);
         margin: 0.5rem;
         padding: 0.2rem;
-        color: $ts-pink;
+        color: $orange-crayola;
     }
 }
 
@@ -102,29 +111,35 @@
 
 
 .superbutton {
+    display: block;
     cursor: pointer;
     background-color: #222;
     border: solid 2px #333;
     color: $ts-pink;
+    margin: 0 auto;
     padding: 2rem;
     width: 100%;
+    max-width: 700px;
     border-radius: $border-radius;
     font-size: 20px;
     font-weight: 700;
     overflow: hidden;
 }
 
+.superbutton:focus-visible {
+    outline: solid 2px $paua-800;
+}
+
 .superbutton.invalid {
-    border-color: $ts-orange !important;
+    border-color: $orange-crayola!important;
 }
 
 .superbutton.valid {
     border: solid 4px $ts-green;
 }
 
-
 .superbutton.pristine {
-    border: solid 4px $ts-blue;
+    border: solid 4px $paua-600;
 }
 
 .superbutton.loading {
@@ -134,7 +149,7 @@
 }
 
 .superbutton.error {
-    border: solid 4px $ts-pink;
+    border: solid 4px $orange-crayola;
 }
 
 .superbutton.done {
@@ -154,6 +169,6 @@
     }
 
     100% {
-        border-color: $ts-orange;
+        border-color: $orange-crayola;
     }
 }

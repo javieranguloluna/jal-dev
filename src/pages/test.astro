@@ -1,0 +1,32 @@
+---
+import Layout from "../layouts/NewLayout.astro";
+import { Image } from "astro:assets";
+import picture from "../../public/images/_4f7181b3-46a5-4aa6-8d6e-59db58896b7f.jfif";
+import MainBanner from '../components/main-banner.astro'
+---
+
+<Layout title="TEST">
+    <MainBanner/>
+    <div>Hola Mundo!</div>
+    <div>Hola Mundo!</div>
+    <div>Hola Mundo!</div>
+    <div>Hola Mundo!</div>
+    <div>Hola Mundo!</div>
+    <div>Hola Mundo!</div>
+    <div>Hola Mundo!</div>
+</Layout>
+
+<style lang="scss">
+    @import "../styles/global.scss";
+
+    div {
+        margin: 2rem auto;
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: calc(100% - 8rem);
+        background-color: grey;
+        border-radius: 7px;
+    }
+</style>

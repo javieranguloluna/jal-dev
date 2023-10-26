@@ -1,0 +1,168 @@
+---
+import RRSS from './rrss.astro';
+
+type Page = {
+    pathname: string;
+    label: string;
+    class: string;
+};
+
+const pages: Page[] = [
+    { pathname: "/projects", label: "proyectos", class: "" },
+    { pathname: "/test", label: "curriculum", class: "" },
+    { pathname: "/contact", label: "contacto", class: "" },
+].map(p => ({
+    ...p,
+    class: `${p.class} ${Astro.url.pathname === p.pathname ? 'active' : ''}`
+}))
+
+---
+
+<header>
+    <nav>
+        <a href="/" class="logo">
+            <span class="bracket">{`{`}</span>
+            <span class="jal">jal</span>
+            <span class="bracket">{`}`}</span>
+        </a>
+        <ul>
+            <li class="mobile-only menu-trigger">+</li>
+            <aside>
+                <nav>
+                    <ul>
+                        {
+                            pages.map((p) => (
+                                <li>
+                                    <a class={p.class} href={p.pathname}>{p.label}</a>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </nav>
+                <RRSS  classList="mobile"/>
+            </aside>
+            {
+                pages.map((p) => (
+                    <li class="mobile-hidden">
+                        <a class={p.class} href={p.pathname}>{p.label}</a>
+                    </li>
+                ))
+            }
+        </ul>
+        <RRSS classList="mobile-hidden"/>
+    </nav>
+</header>
+
+<style lang="scss">
+    @import "../styles/global.scss";
+
+    header {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: $paua-bg;
+        z-index: 1000;
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+
+            .logo {
+                color: $text;
+                text-decoration: none;
+                padding: 0.5rem 1rem;
+                font-size: 2rem;
+
+                .jal {
+                    background: linear-gradient(
+                        135deg,
+                        $paua-50,
+                        $paua-400
+                    );
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    -webkit-box-decoration-break: clone;
+                    font-weight: bold;
+                }
+
+                .bracket {
+                    font-weight: bold;
+                    color: $orange-crayola;
+                }
+            }
+
+            ul {
+                display: inline-flex;
+                gap: 1rem;
+                margin: 0;
+                padding: 0;
+
+                aside {
+                    display: none;
+                    position: absolute;
+                    top: 1rem;
+                    right: 0;
+                    border-bottom-left-radius: $border-radius;
+                    background-color: $paua-bg;
+
+                    nav {
+                        ul {
+                            padding: 2rem 0;
+                            width: 100%;
+                            display: block;
+                            li {
+                                padding: 1rem 0;
+                            }
+                        }
+                    }
+                }
+
+                li {
+                    list-style-type: none;
+                    padding: 0.5rem 1rem;
+                    color: $paua-900;
+
+                    a {
+                        color: $paua-400;
+                        font-weight: bold;
+                        text-decoration: none;
+                        &:hover {
+                            color: $paua-700;
+                        }
+                        &.active {
+                            color: $orange-crayola;
+                        }
+                    }
+
+                    &.menu-trigger {
+                        font-size: 2rem;
+                        color: $orange-crayola;
+                    }
+
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+        header {
+            nav {
+                padding-right: 0.5rem;
+                ul {
+                    li.menu-trigger:hover ~ aside,
+                    aside:hover {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+    }
+</style>

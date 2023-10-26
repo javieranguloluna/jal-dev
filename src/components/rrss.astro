@@ -1,0 +1,81 @@
+---
+import { Image } from "astro:assets";
+import github from "../../public/images/github-mark-white.png";
+import linkedin from "../../public/images/linkedin-logo.png";
+
+interface Props {
+    classList?: string;
+}
+
+const { classList } = Astro.props;
+
+type RRSS = {
+    name: string;
+    url: string;
+    icon: ImageMetadata;
+    class: string;
+};
+
+const rrss: RRSS[] = [
+    {
+        name: "linkedin",
+        url: "https://www.linkedin.com/in/ja-luna-aa0782297/",
+        icon: linkedin,
+        class: "inverted",
+    },
+    {
+        name: "github",
+        url: "https://github.com/javieranguloluna",
+        icon: github,
+        class: "",
+    },
+];
+---
+
+<div class={`rrss ${classList || ""}`}>
+    {
+        rrss.map((rs) => (
+            <a href={rs.url} target="_blank">
+                <Image
+                    class={rs.class}
+                    src={rs.icon}
+                    alt={rs.name}
+                    width="50"
+                    height="50"
+                />
+            </a>
+        ))
+    }
+</div>
+
+<style lang="scss">
+    @import "../styles/global.scss";
+
+    .rrss {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+
+        a {
+            .inverted {
+                filter: invert(100%);
+            }
+
+            img {
+                width: 30px;
+                height: 30px;
+                border-radius: 100%;
+
+                &:hover {
+                    box-shadow: 0px 0px 10px $secondary;
+                    transition: box-shadow 0.1s ease-in-out;
+                }
+            }
+        }
+
+        &.mobile {
+            padding: 2rem;
+            gap: 1rem;
+        }
+    }
+</style>
