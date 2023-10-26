@@ -55,7 +55,7 @@ export const SuperForm = (props: { fields: ContactFormFields }) => {
     const sendForm = (fields: ContactFormFields): any => {
 
           
-          fetch('https://jal-dev.vercel.app/submit-contact', {
+          fetch('https://jal-dev.vercel.app/api/submit-contact', {
             headers: {
                 "Content-Type": "application/json"
             },
