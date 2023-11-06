@@ -12,13 +12,38 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+const slideUpAnimation: TransitionAnimation = {
+  name: "fadeOutUp",
+  duration: "0.2s",
+  easing: "ease-out",
+  fillMode: "forwards",
+};
+
+const slideDownAnimation: TransitionAnimation = {
+  name: "fadeInDown",
+  duration: "0.2s",
+  easing: "ease-in",
+  fillMode: "backwards",
+};
+
+const slideTransition: TransitionDirectionalAnimations = {
+  forwards: {
+    old: slideUpAnimation,
+    new: slideDownAnimation,
+  },
+  backwards: {
+    old: slideDownAnimation,
+    new: slideUpAnimation,
+  },
+};
 ---
 
 <!doctype html>
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <meta name="description" content="Astro description" />
+        <meta name="description" content="JAL | Junior Frontend Javasript Developer" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/png" href="/jal-favicon.png" />
         <meta name="generator" content={Astro.generator} />
@@ -27,45 +52,102 @@ const { title } = Astro.props;
     </head>
     <body>
         <Nav />
-
         <main>
+            {title && <h1 transition:animate={slideTransition}>{title}</h1>}
             <slot />
         </main>
-
         <Footer />
-    </body>
-</html>
+    </body><style is:global lang="scss">
+        @import "../styles/global.scss";
+        * {
+            // /* width */
+            ::-webkit-scrollbar {
+                width: 10px;
+                
+            }
 
-<style is:global lang="scss">
-    @import "../styles/global.scss";
+            /* Track */
+            ::-webkit-scrollbar-track {
+                background: $paua-dark-grey;
+            }
 
-    body {
-        scrollbar-gutter: stable;
-        display: flex;
-        flex-direction: column;
-        min-height: 100svh;
-        background-color: $paua-bg;
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+                background: $paua-light-grey;
+                border-radius: $border-radius;
+            }
 
-        main {
-            flex-grow: 1;
+    
+
         }
-
-        .mobile-only {
-            display: none;
+        html {
+            scrollbar-gutter: stable;
+            overflow-y: scroll;
         }
-        // .mobile-hidden {
-        //     display: block;
-        // }
-    }
-
-    @media screen and (max-width: $mobile-breakpoint) {
         body {
-            .mobile-only {
-                display: block;
+            display: flex;
+            flex-direction: column;
+            min-height: 100svh;
+            background-color: $paua-bg;
+
+            main {
+                flex-grow: 1;
+                max-width: 900px;
+                margin-inline: auto;
+                h1 {
+                    color: $paua-400;
+                    margin-inline: 1rem;
+                }
             }
-            .mobile-hidden {
-                display: none !important;
+
+            .mobile-only {
+                display: none;
+            }
+            // .mobile-hidden {
+            //     display: block;
+            // }
+        }
+
+        @media screen and (max-width: $mobile-breakpoint) {
+            body {
+                .mobile-only {
+                    display: block;
+                }
+                .mobile-hidden {
+                    display: none !important;
+                }
             }
         }
+        @keyframes fadeOutUp {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      100% {
+        opacity: 0;
+      }
+      70% {
+        opacity: 0;
+      }
     }
-</style>
+
+    @keyframes fadeInDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+      }
+      70% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    </style>
+</html>
