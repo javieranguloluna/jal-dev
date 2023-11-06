@@ -14,19 +14,20 @@ import picture from "../../public/images/_4f7181b3-46a5-4aa6-8d6e-59db58896b7f.j
 <style lang="scss">
     @import "../styles/global.scss";
     section {
+        box-sizing: border-box;
         margin: 2rem auto;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: $border-radius;
         padding: 2px;
-        min-height: 500px;
-        width: calc(100% - 4rem - 4px);
+        min-height: 80svh;
+        width: 100%;
         background: linear-gradient(120deg, $paua-50, $paua-200 10%, $paua-800);
 
         img {
             width: 50%;
-            height: 500px;
+            height: 80svh;
             border-top-right-radius: $border-radius;
             border-bottom-right-radius: $border-radius;
             object-fit: cover;
@@ -43,7 +44,7 @@ import picture from "../../public/images/_4f7181b3-46a5-4aa6-8d6e-59db58896b7f.j
             border-top-left-radius: $border-radius;
             border-bottom-left-radius: $border-radius;
             width: 50%;
-            height: 500px;
+            height: 80svh;
             margin: 0;
             background-color: $paua-bg;
 
@@ -67,7 +68,6 @@ import picture from "../../public/images/_4f7181b3-46a5-4aa6-8d6e-59db58896b7f.j
     @media screen and (max-width: $mobile-breakpoint) {
         section {
             margin-top: 1rem;
-            height: 80vh;
             width: calc(100% - 2rem);
             flex-direction: column-reverse;
             overflow: hidden;
