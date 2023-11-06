@@ -13,7 +13,7 @@
 
     button.superbutton {
         box-sizing: border-box;
-        margin: 0 1rem;
+        margin: 1rem;
         width: calc(100% - 2rem);
     }
 }
@@ -40,17 +40,14 @@
         input,
         select,
         textarea {
-            width: calc(100% - 1rem);
+            box-sizing: border-box;
+            width: 100%;
             border-radius: 7px;
             padding: 0.5rem;
             background-color: $paua-dark-grey;
             color: $paua-100;
             border: solid 2px $paua-light-grey;
             outline: solid 2px transparent;
-        }
-
-        select {
-            width: 100%;
         }
 
         input:focus-visible,
@@ -89,11 +86,11 @@
 
 .field.textarea .field-wrapper {
     color: white;
-    margin: 1rem 0;
+    margin: 2rem 0;
 
     textarea {
         resize: vertical;
-        min-height: 3rem;
+        min-height: 5rem;
         max-height: 10rem;
     }
 
@@ -110,8 +107,8 @@
     background-color: $paua-bg;
     border: solid 2px $orange-crayola;
     color: $orange-crayola;
-    margin: 0 auto;
-    padding: 2rem;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
     width: 100%;
     max-width: 700px;
     border-radius: $border-radius;

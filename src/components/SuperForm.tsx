@@ -160,7 +160,7 @@ export const SuperField = (props: SuperFieldProps & HandleChange) => {
                 <label for={props.name}>{props.label}</label>
                 {props.tag === 'SELECT' &&
                     <select name="contact" onChange={props.handleChange} {...props.atts}>
-                        <option value=""></option>
+                        {!props.value && <option value=""></option>}
                         {props.options.map(o => <option value={o.value}>{o.option}</option>)}
                     </select>
                 }
