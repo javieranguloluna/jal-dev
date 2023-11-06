@@ -63,13 +63,13 @@ export const SuperForm = (props: { fields: ContactFormFields, submitText: string
         })
             .then(response => response.json())
             .then(response => {
-                // console.log(response)
-                if (response.notion.id) {
+                if (response.notionId) {
                     updateForm({
                         ...form,
                         status: 'done'
                     })
                 }
+                else throw response
             })
             .catch(err => {
                 console.error(err)
@@ -185,7 +185,7 @@ export const SuperButton = (props: { status: FormStatus; valid: boolean; childre
         <>
             <button
                 type="submit"
-                disabled={!props.valid}
+                disabled={!props.valid || props.status === 'done' || props.status === 'loading'}
                 className={`superbutton ${props.status}`}
             >
                 {props.status === 'pristine' && props.children}
