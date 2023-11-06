@@ -1,127 +1,118 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "../layouts/NewLayout.astro";
+import MainBanner from "../components/main-banner.astro";
+import Techs from "../components/techs.astro";
 
 export const prerender = true;
-
-export class Jal extends Date {
-    public type: string = "";
-
-    birth = new Date("05/06/1989");
-    age: number;
-
-    constructor () {
-        super();
-        this.age = this.getAge();
-    }
-
-    public contact(data: any) {
-        console.log(`${this.age}`)
-        return data.response;
-    }
-
-    private getAge(): number {
-        const today = new Date();
-        let age = today.getFullYear() - this.birth.getFullYear();
-
-        if (
-            today.getMonth() < this.birth.getMonth() ||
-            (
-                today.getMonth() === this.birth.getMonth() &&
-                today.getDate() < this.birth.getDate()
-                )
-            ) age--;
-
-        return age;
-    }
-}
-
 ---
 
 <Layout title="">
-    <!-- <div class="header">
-        <h2><span>J</span>avier <span>A</span>ngulo de <span>L</span>una</h2>
-        <Image src={avatar} alt="" width="150" height="150"/>
-    </div> -->
-    <div class="console">> Hi! I'm Javier Angulo de Luna, a 34 years old self learning frontend developer and my favorite framework is Angular!</div>
-
-    <p>
-        <span class="pink">export </span><span class="blue">class </span><span class="green">JavierAnguloLuna </span><span class="blue">extends </span><span class="green">Developer </span><span class="yellow">&#123;</span><br>
-        &nbsp;<span class="blue">public </span><span class="light-blue">name: </span><span class="green">string</span> = <span class="orange">"Javier Angulo de Luna"</span>;<br>
-        &nbsp;<span class="blue">public </span><span class="light-blue">birth: </span><span class="green">Date</span> = <span class="blue">new </span> <span class="green">Date</span><span class="pink">(</span><span class="orange">"05/06/1989"</span><span class="pink">)</span>;<br>
-        &nbsp;<span class="blue">public </span><span class="light-blue">age: </span><span class="green">number</span>;<br>
-        &nbsp;<span class="blue">public </span><span class="light-blue">type: </span><span class="green">string</span> = <span class="orange">"frontend developer"</span>;<br>
-        &nbsp;<span class="blue">public </span><span class="light-blue">origin: </span><span class="green">string</span> = <span class="orange">"self learning"</span>;<br>
-        &nbsp;<span class="blue">public </span><span class="light-blue">favoriteFramework: </span><span class="green">string</span> = <span class="orange">"Angular"</span>;<br>
-        <br>
-        &nbsp;<span class="blue">contructor </span><span class="pink">(</span><span class="pink">) &#123;</span><br>
-        &nbsp;&nbsp;<span class="blue">super</span><span class="pink">()</span>;<br>
-        &nbsp;&nbsp;<span class="blue">this</span>.<span class="light-blue">age</span> = <span class="blue">this</span>.<span class="yellow">getAge</span><span class="pink">()</span> <br>
-        &nbsp;<span class="pink">&#125;</span><br>
-        <br>
-        &nbsp;<span class="blue">public </span><span class="yellow">greet</span><span class="pink">(</span><span class="pink">)</span>: <span class="green">void </span><span class="pink">&#123;</span><br>
-        &nbsp;&nbsp;&nbsp<span class="light-blue">console</span>.<span class="yellow">log</span><span class="pink">(</span><span class="orange"><br>
-            <span class="inline">
-            `Hi! I'm <span class="blue">$&#123;<span class="blue">this</span><span class="white">.<span class="span light-blue">name</span></span>&#125;</span>, a <span class="blue">$&#123;<span class="blue">this</span><span class="white">.<span class="yellow">getAge<span class="pink">()</span></span></span>&#125;</span> years old <span class="blue">$&#123;<span class="blue">this</span><span class="white">.<span class="span light-blue">origin</span></span>&#125; </span><span class="blue">$&#123;<span class="blue">this</span><span class="white">.<span class="span light-blue">type</span></span>&#125;</span> and my favorite framework is <span class="blue">$&#123;<span class="blue">this</span><span class="white">.<span class="span light-blue">favoriteFramework</span></span>&#125;</span>!`</span><br><br></span>&nbsp;&nbsp;&nbsp;<span class="pink">)</span>;</span><br>
-        &nbsp;<span class="pink">&#125;</span><br>
-        <br>
-        &nbsp;<span class="blue">private </span> <span class="yellow">getAge</span><span class="pink">()</span>: <span class="green">number </span> <span class="pink">&#123;</span><br>
-        &nbsp;&nbsp;<span class="blue">const </span> <span class="light-blue">today</span> = <span class="blue">new </span> <span class="green">Date</span>();<br>
-        &nbsp;&nbsp;<span class="blue">let </span> <span class="light-blue">age</span> = <span class="light-blue">today</span>.<span class="yellow">getFullYear</span>() - <span class="blue">this</span>.<span class="light-blue">birth</span>.<span class="yellow">getFullYear</span>();<br>
-        <br>
-        &nbsp;&nbsp;<span class="pink">if</span> (<br>
-        &nbsp;&nbsp;&nbsp;<span class="light-blue">today</span>.<span class="yellow">getMonth</span>() < <span class="blue">this</span>.<span class="light-blue">birth</span>.<span class="yellow">getMonth</span>() ||<br>
-        &nbsp;&nbsp;&nbsp;(<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;<span class="light-blue">today</span>.<span class="yellow">getMonth</span>() === <span class="blue">this</span>.<span class="light-blue">birth</span>.<span class="yellow">getMonth</span>() &&<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;<span class="light-blue">today</span>.<span class="yellow">getDate</span>() < <span class="blue">this</span>.<span class="light-blue">birth</span>.<span class="yellow">getDate</span>()<br>
-        &nbsp;&nbsp;) <span class="light-blue">age</span>--;<br><br>
-        &nbsp;&nbsp;<span class="pink">return </span><span class="light-blue">age</span>;<br>
-        &nbsp;<span class="pink">&#125;</span><br>
-        <br>
-        <span class="yellow">&#125;</span><br>
-        <br>
-        <span class="blue">const </span><span class="light-blue">me </span>= <span class="blue">new </span><span class="green">JavierAnguloLuna</span><span class="pink">()</span>;<br>
-        <span class="light-blue">me</span>.<span class="span yellow">greet</span><span class="pink">()</span>;
-    </p>
+    <MainBanner />
+    <section class="ideas">
+        <aside>
+            <h2>Convirtiendo ideas en interfaces de usuario</h2>
+        </aside>
+        <aside>
+            <p>
+                Porque programar no es solo escribir código... sino convertir tu
+                visión en software funcional!
+            </p>
+        </aside>
+    </section>
+    <section class="projects">
+        <aside>
+            <h2>Proyectos</h2>
+            <br class="mobile-hidden">
+            <p>
+                A lo largo de mi carrera, he tenido la oportunidad de trabajar
+                en diversos proyectos, desde startups hasta trabajos freelance. Échales un vistazo!
+            </p>
+        </aside>
+        <aside>
+            <div class="gallery">
+                <div class="wide"></div>
+                <div class="stretch">{"{"}<span>...</span>{"}"}</div>
+            </div>
+            <a class="cta" href="/projects">Ver proyectos</a>
+        </aside>
+    </section>
+    <Techs />
 </Layout>
 
 <style lang="scss">
     @import "../styles/global.scss";
-    
-    .header {
+
+    section {
+        box-sizing: border-box;
+        padding: 2rem;
+        margin: auto;
         display: flex;
-        gap: 1rem;
         align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 50svh;
 
-        img {
-            border-radius: $border-radius;
-            object-fit: cover;
-            object-position: 0px -6px;
-        }
+        aside {
+            padding: 1rem;
+            width: 50%;
 
-        h2 {
-            font-size: 30px;
-            span {
-                color: $primary;
+            h2 {
+                color: $paua-400;
+                font-size: 2rem;
+            }
+            p {
+                color: $paua-100;
+                font-size: 1.2rem;
+            }
+
+            .gallery {
+                margin: auto;
+                padding: 1rem;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                grid-template-rows: repeat(7, 1fr);
+                height: 150px;
+                aspect-ratio: 1;
+
+                .wide {
+                    border: solid 2px $paua-700;
+                    border-radius: $border-radius;
+                    grid-column: 1 / -1;
+                    grid-row: 2 / -2;
+                    box-shadow: 0 0 10px $paua-dark-grey;
+                }
+
+                .stretch {
+                    background-color: $paua-bg;
+                    border: solid 2px $paua-700;
+                    border-radius: $border-radius;
+                    grid-column: 2 / -2;
+                    grid-row: 1 / -1;
+                    box-shadow: 0 0 10px $paua-dark-grey;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: $orange-crayola;
+                    font-weight: bold;
+                    span {
+                        color: $paua-400;
+                    }
+                }
             }
         }
     }
 
-    .inline {
-        line-height: 20px;
-    }
-
-
-
-    @media screen and (max-width: 700px) {
-
-        p {
-            font-size: 0.7rem;
-    font-weight: 700;
+    @media screen and (max-width: $mobile-breakpoint) {
+        section {
+            min-height: 100px;
+            padding: 1rem;
+            width: 100%;
+            flex-direction: column;
+            aside {
+                text-align: center;
+                width: 100%;
+                padding: 0;
+            }
         }
-        
     }
-
-    
-
-
 </style>
