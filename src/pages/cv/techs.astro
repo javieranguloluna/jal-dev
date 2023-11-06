@@ -138,65 +138,68 @@ const techs: Tech[] = [
 <style lang="scss">
     @import "../../styles/global.scss";
 
-    .tech-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-
-        .tech {
-            padding: 1rem;
-            margin: 1rem;
-
-            width: 10rem;
-
+    section {
+        margin: 2rem auto;
+        .tech-wrapper {
             display: flex;
             flex-wrap: wrap;
-            flex-direction: column;
+            justify-content: center;
 
-            background-color: #111;
-            border-radius: $border-radius;
+            .tech {
+                padding: 1rem;
+                margin: 1rem;
 
-            cursor: default;
-            box-shadow: 0px 0px 5px $secondary;
-            transition:
-                transform 0.3s ease-in-out,
-                box-shadow 0.3s ease-in-out;
+                width: 10rem;
 
-            animation: reveal ease-in-out both;
-            animation-timeline: view();
-
-            .header {
                 display: flex;
-                gap: 1rem;
-                align-items: center;
-                margin-bottom: 1rem;
+                flex-wrap: wrap;
+                flex-direction: column;
 
-                img {
-                    border-radius: $border-radius;
+                background-color: #111;
+                border-radius: $border-radius;
+
+                cursor: default;
+                box-shadow: 0px 0px 5px $secondary;
+                transition:
+                    transform 0.3s ease-in-out,
+                    box-shadow 0.3s ease-in-out;
+
+                animation: reveal ease-in-out both;
+                animation-timeline: view();
+
+                .header {
+                    display: flex;
+                    gap: 1rem;
+                    align-items: center;
+                    margin-bottom: 1rem;
+
+                    img {
+                        border-radius: $border-radius;
+                    }
+                }
+
+                @for $i from 1 through 10 {
+                    .level-#{$i} {
+                        width: 100%;
+                        background: linear-gradient(
+                            90deg,
+                            $ts-green 0%,
+                            $ts-green #{$i * 10%},
+                            transparent #{($i * 10%) + 0.1},
+                            transparent 100%
+                        );
+                        height: 5px;
+                        border-radius: $border-radius;
+                        border: solid 1px $ts-green;
+
+                    }
                 }
             }
 
-            @for $i from 1 through 10 {
-                .level-#{$i} {
-                    width: 100%;
-                    background: linear-gradient(
-                        90deg,
-                        $ts-green 0%,
-                        $ts-green #{$i * 10%},
-                        transparent #{($i * 10%) + 0.1},
-                        transparent 100%
-                    );
-                    height: 5px;
-                    border-radius: $border-radius;
-                    border: solid 1px $ts-green;
-
-                }
+            .tech:hover {
+                transform: scale(1.01);
+                box-shadow: 0px 0px 10px $primary;
             }
-        }
-
-        .tech:hover {
-            transform: scale(1.01);
-            box-shadow: 0px 0px 10px $primary;
         }
     }
 
