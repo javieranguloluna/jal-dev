@@ -128,9 +128,9 @@ $mobile-breakpoint: 700px;
 	.console {
         padding: 1rem;
         margin: 2rem 0;
-        color: white;
+        color: $paua-50;
         font-weight: 700;
-        background-color: #222;
+        background-color: $paua-dark-grey;
         border-radius: $border-radius;
     }
 
