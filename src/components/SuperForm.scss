@@ -1,14 +1,16 @@
 @import '../styles/global.scss';
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
     div.field {
         margin: 1rem;
+
         .field-wrapper {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
         }
     }
+
     button.superbutton {
         box-sizing: border-box;
         margin: 0 1rem;
@@ -29,54 +31,52 @@
         width: 100%;
 
         label {
+            color: $paua-400;
+            font-weight: bold;
             padding: 0.5rem;
-            display: flex;
-            flex-direction: row;
-            gap: 0.5rem;
+            min-width: 6rem;
         }
 
-        .input-wrapper {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 0.5rem;
+        input,
+        select,
+        textarea {
+            width: calc(100% - 1rem);
+            border-radius: 7px;
+            padding: 0.5rem;
+            background-color: $paua-dark-grey;
+            color: $paua-100;
+            border: solid 2px $paua-light-grey;
+            outline: solid 2px transparent;
+        }
+
+        select {
             width: 100%;
-
-            input,
-            select,
-            textarea {
-                width: calc(100% - 1rem);
-                border-radius: 7px;
-                padding: 0.5rem;
-                background-color: $paua-dark-grey;
-                color: $text;
-                border: solid 2px $paua-light-grey;
-                outline: solid 2px transparent;
-            }
-
-            input:focus-visible,
-            select:focus-visible,
-            textarea:focus-visible {
-                outline: solid 2px $paua-800;
-            }
-
-            input.error,
-            select.error,
-            textarea.error {
-                outline: solid 2px $orange-crayola;
-                margin: 0;
-            }
-
-            option {
-                color: white;
-                background-color: $primary;
-            }
-
-            option:checked,
-            option:hover {
-                background-color: $secondary;
-            }
         }
+
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: solid 2px $paua-800;
+        }
+
+        input.error,
+        select.error,
+        textarea.error {
+            outline: solid 2px $orange-crayola;
+            margin: 0;
+        }
+
+        option {
+            color: $paua-400;
+            font-weight: bold;
+            background-color: $paua-bg;
+        }
+
+        option:checked,
+        option:hover {
+            background-color: $orange-crayola;
+        }
+
     }
 
     .error {
@@ -89,10 +89,6 @@
 
 .field.textarea .field-wrapper {
     color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
     margin: 1rem 0;
 
     textarea {
@@ -103,8 +99,6 @@
 
     label {
         padding: 0.5rem;
-        display: flex;
-        flex-direction: row;
         gap: 0.5rem;
     }
 }
@@ -113,9 +107,9 @@
 .superbutton {
     display: block;
     cursor: pointer;
-    background-color: #222;
-    border: solid 2px #333;
-    color: $ts-pink;
+    background-color: $paua-bg;
+    border: solid 2px $orange-crayola;
+    color: $orange-crayola;
     margin: 0 auto;
     padding: 2rem;
     width: 100%;
@@ -124,39 +118,40 @@
     font-size: 20px;
     font-weight: 700;
     overflow: hidden;
+
+    &:focus-visible {
+        outline: solid 2px $paua-800;
+    }
+
+
+    &.loading {
+        border-color: $orange-crayola;
+        color: $orange-crayola;
+        animation: pulse 0.5s infinite alternate;
+    }
+
+    &.error {
+        color: $cardinal;
+        border: solid 4px $cardinal;
+    }
+
+    &.done {
+        border-color: $ts-green;
+        color: $ts-green;
+        cursor: default;
+    }
+
+    &:disabled {
+        cursor: default;
+        color: $paua-light-grey;
+        border-color: $paua-light-grey;
+        background-color: $paua-dark-grey;
+    }
+
+
 }
 
-.superbutton:focus-visible {
-    outline: solid 2px $paua-800;
-}
 
-.superbutton.invalid {
-    border-color: $orange-crayola!important;
-}
-
-.superbutton.valid {
-    border: solid 4px $ts-green;
-}
-
-.superbutton.pristine {
-    border: solid 4px $paua-600;
-}
-
-.superbutton.loading {
-    border: solid 4px $ts-orange;
-    color: $ts-orange;
-    animation: pulse 0.5s infinite alternate;
-}
-
-.superbutton.error {
-    border: solid 4px $orange-crayola;
-}
-
-.superbutton.done {
-    border: solid 4px $ts-green;
-    color: $ts-green;
-    cursor: default;
-}
 
 
 

@@ -19,7 +19,7 @@ export interface ContactFormFields {
 }
 
 
-export const SuperForm = (props: { fields: ContactFormFields }) => {
+export const SuperForm = (props: { fields: ContactFormFields, submitText: string, url: string }) => {
 
     const [form, updateForm] = useState<ContactForm>({
         fields: props.fields,
@@ -45,22 +45,22 @@ export const SuperForm = (props: { fields: ContactFormFields }) => {
                 ...form,
                 status: 'loading'
             })
-    
+
             setTimeout(() => {
                 sendForm(form.fields)
-            },2000)
+            }, 2000)
         }
     }
 
     const sendForm = (fields: ContactFormFields): any => {
 
-          fetch('https://jal-dev.vercel.app/submit-contact', {
+        fetch(props.url, {
             headers: {
                 "Content-Type": "application/json"
             },
             method: 'POST',
             body: JSON.stringify(fields)
-          })
+        })
             .then(response => response.json())
             .then(response => {
                 // console.log(response)
@@ -124,14 +124,15 @@ export const SuperForm = (props: { fields: ContactFormFields }) => {
 
 
     return (<>
-        <form method="POST" onSubmit={handleSubmit} onChange={handleChange}>
-            {Object.values(form.fields).map(f => <SuperField {...f} />)}
-            <SuperButton status={form.status} valid={form.valid}>return</SuperButton>
+        <form method="POST" onSubmit={handleSubmit}>
+            {Object.values(form.fields).map(f => <SuperField handleChange={handleChange} {...f} />)}
+            <SuperButton status={form.status} valid={form.valid}>{props.submitText}</SuperButton>
         </form>
     </>)
 }
 
 export type SuperFieldProps = {
+    label: string;
     name: string;
     value: any;
     valid: boolean;
@@ -147,43 +148,27 @@ export type SuperFieldProps = {
     }>
 })
 
-export const SuperField = (props: SuperFieldProps) => {
+type HandleChange = {
+    handleChange: (e: TargetedEvent<HTMLFormElement, Event>) => void
+}
+
+export const SuperField = (props: SuperFieldProps & HandleChange) => {
 
     return (<>
         <div class={`field ${props.tag === 'TEXTAREA' ? 'textarea' : ''}`}>
             <div class="field-wrapper">
-                <label for={props.name}>
-                    <span class="blue">const</span>
-                    <span class="light-blue">{props.name}</span>
-                    :
-                    <span class="green">string</span>
-                    =                    
-                    {props.tag === 'TEXTAREA' &&
-                        <span class="orange">`</span>
-                    }
-                </label>
-                <div class="input-wrapper">
-                    {props.tag === 'SELECT' &&
-                        <select name="contact" {...props.atts}>
-                            <option value=""></option>
-                            { props.options.map(o => <option value={o.value}>{o.option}</option>) }
-                        </select>
-                    }
-                    {props.tag === 'INPUT' &&
-                        <input name={props.name} {...props.atts} />
-                    }
-                    {props.tag === 'TEXTAREA' &&
-                        <textarea name={props.name} {...props.atts}></textarea>
-                    }
-                    {props.tag !== 'TEXTAREA' &&
-                        <span>;</span>
-                    }
-                </div>
+                <label for={props.name}>{props.label}</label>
+                {props.tag === 'SELECT' &&
+                    <select name="contact" onChange={props.handleChange} {...props.atts}>
+                        <option value=""></option>
+                        {props.options.map(o => <option value={o.value}>{o.option}</option>)}
+                    </select>
+                }
+                {props.tag === 'INPUT' &&
+                    <input name={props.name} onChange={props.handleChange} {...props.atts} />
+                }
                 {props.tag === 'TEXTAREA' &&
-                    <span>
-                        <span class="orange">`</span>
-                        <span>;</span>
-                    </span>
+                    <textarea name={props.name} onChange={props.handleChange} {...props.atts}></textarea>
                 }
             </div>
             {props.errors &&
@@ -200,13 +185,13 @@ export const SuperButton = (props: { status: FormStatus; valid: boolean; childre
         <>
             <button
                 type="submit"
-                disabled={props.status !== 'error' && props.status !== 'pristine' }
-                className={`superbutton ${props.valid ? 'valid' : 'invalid'} ${props.status} `}
+                disabled={!props.valid}
+                className={`superbutton ${props.status}`}
             >
-            {props.status === 'pristine' && props.children}
-            {props.status === 'loading' && 'loading...'}
-            {props.status === 'done' && 'done!'}
-            {props.status === 'error' && 'error!'}
+                {props.status === 'pristine' && props.children}
+                {props.status === 'loading' && 'Enviando...'}
+                {props.status === 'done' && 'Recibido!'}
+                {props.status === 'error' && 'Error!'}
 
             </button>
         </>

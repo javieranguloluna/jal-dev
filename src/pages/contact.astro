@@ -8,6 +8,7 @@ let formFields: ContactFormFields = {
         tag: "INPUT",
         atts: { type: "text", required: true },
         errors: null,
+        label: "Nombre",
         name: "name",
         value: "",
         valid: false,
@@ -16,6 +17,7 @@ let formFields: ContactFormFields = {
         tag: "INPUT",
         atts: { type: "email", required: true },
         errors: null,
+        label: "Email",
         name: "email",
         value: "",
         valid: false,
@@ -24,6 +26,7 @@ let formFields: ContactFormFields = {
         tag: "INPUT",
         atts: { type: "tel", required: true },
         errors: null,
+        label: "Teléfono",
         name: "phone",
         value: "",
         valid: false,
@@ -32,6 +35,7 @@ let formFields: ContactFormFields = {
         tag: "SELECT",
         atts: { type: "text", required: true },
         errors: null,
+        label: "Contacto",
         name: "contact",
         value: "",
         options: [
@@ -45,6 +49,7 @@ let formFields: ContactFormFields = {
         tag: "TEXTAREA",
         atts: { required: true },
         errors: null,
+        label: "Mensaje",
         name: "message",
         value: "",
         valid: false,
@@ -54,7 +59,11 @@ let formFields: ContactFormFields = {
 ---
 
 <Layout title="Contacto">
-    <SuperForm client:visible fields={formFields} />
+    <SuperForm client:visible
+        fields={formFields}
+        submitText="Enviar"
+        url="https://jal-dev.vercel.app/submit-contact"
+    />
 </Layout>
 
 <style lang="scss"></style>
