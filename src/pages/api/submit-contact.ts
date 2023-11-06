@@ -67,7 +67,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     } catch (error) {
         console.error(error)
-        return new Response(JSON.stringify({error: 'error'}))
+        return new Response(JSON.stringify({error: 'error in form api'}))
     }
 
 }
