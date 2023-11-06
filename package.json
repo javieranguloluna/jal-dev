@@ -12,10 +12,13 @@
   "dependencies": {
     "@astrojs/preact": "^3.0.0",
     "@astrojs/vercel": "^5.0.2",
+    "@notionhq/client": "^2.2.13",
     "@preact/signals": "^1.2.1",
-    "@types/node": "^20.8.10",
     "astro": "^3.2.2",
     "preact": "^10.18.1",
     "sass": "^1.68.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.10"
   }
 }
