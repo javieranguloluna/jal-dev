@@ -1,16 +1,21 @@
 import type { APIRoute } from "astro";
 
+export const prerender = true;
+
+const NOTION_API_KEY = import.meta.env.NOTION_API_KEY;
+const NOTION_COOKIE = import.meta.env.NOTION_COOKIE;
+
 const sendForm = (fields: any): any => {
     var myHeaders = new Headers();
     myHeaders.append("notion-version", "2022-06-28");
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append(
         "Authorization",
-        "Bearer secret_7m26h14EGjUpRwG3oyqOqoMh0kDU5gNuCPZb5tjDWse",
+        `Bearer  ${NOTION_API_KEY}`
     );
     myHeaders.append(
         "Cookie",
-        "__cf_bm=yjRq5D3BEItBYXbI3Oob934OyL5UKbchT_cF0_B0K5Q-1697542457-0-AQFlk3dTZ3e2uznjKBen+hK8NqUizeTZE8bQ/40/ewYb/63pS/p48NvK1WCaIDdp2EIMCGXDIAuny6K4CPF+Z1o=",
+        NOTION_COOKIE
     );
 
     var raw = JSON.stringify({
