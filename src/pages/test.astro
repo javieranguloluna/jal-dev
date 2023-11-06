@@ -1,32 +1,116 @@
 ---
 import Layout from "../layouts/NewLayout.astro";
-import { Image } from "astro:assets";
-import picture from "../../public/images/_4f7181b3-46a5-4aa6-8d6e-59db58896b7f.jfif";
-import MainBanner from '../components/main-banner.astro'
+import MainBanner from "../components/main-banner.astro";
+import Techs from "../components/techs.astro";
 ---
 
-<Layout title="TEST">
-    <MainBanner/>
-    <div>Hola Mundo!</div>
-    <div>Hola Mundo!</div>
-    <div>Hola Mundo!</div>
-    <div>Hola Mundo!</div>
-    <div>Hola Mundo!</div>
-    <div>Hola Mundo!</div>
-    <div>Hola Mundo!</div>
+<Layout title="">
+    <MainBanner />
+    <section class="ideas">
+        <aside>
+            <h2>Convirtiendo ideas en interfaces de usuario</h2>
+        </aside>
+        <aside>
+            <p>
+                Porque programar no es solo escribir código... sino convertir tu
+                visión en software funcional!
+            </p>
+        </aside>
+    </section>
+    <section class="projects">
+        <aside>
+            <h2>Proyectos</h2>
+            <br class="mobile-hidden">
+            <p>
+                A lo largo de mi carrera, he tenido la oportunidad de trabajar
+                en diversos proyectos, desde startups hasta trabajos freelance. Échales un vistazo!
+            </p>
+        </aside>
+        <aside>
+            <div class="gallery">
+                <div class="wide"></div>
+                <div class="stretch">{"{"}<span>...</span>{"}"}</div>
+            </div>
+            <a class="cta" href="/projects">Ver proyectos</a>
+        </aside>
+    </section>
+    <Techs />
 </Layout>
 
 <style lang="scss">
     @import "../styles/global.scss";
 
-    div {
-        margin: 2rem auto;
+    section {
+        box-sizing: border-box;
         padding: 2rem;
+        margin: auto;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: calc(100% - 8rem);
-        background-color: grey;
-        border-radius: 7px;
+        width: 100%;
+        min-height: 50svh;
+
+        aside {
+            padding: 1rem;
+            width: 50%;
+
+            h2 {
+                color: $paua-400;
+                font-size: 2rem;
+            }
+            p {
+                color: $paua-100;
+                font-size: 1.2rem;
+            }
+
+            .gallery {
+                margin: auto;
+                padding: 1rem;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                grid-template-rows: repeat(7, 1fr);
+                height: 150px;
+                aspect-ratio: 1;
+
+                .wide {
+                    border: solid 2px $paua-700;
+                    border-radius: $border-radius;
+                    grid-column: 1 / -1;
+                    grid-row: 2 / -2;
+                    box-shadow: 0 0 10px $paua-dark-grey;
+                }
+
+                .stretch {
+                    background-color: $paua-bg;
+                    border: solid 2px $paua-700;
+                    border-radius: $border-radius;
+                    grid-column: 2 / -2;
+                    grid-row: 1 / -1;
+                    box-shadow: 0 0 10px $paua-dark-grey;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: $orange-crayola;
+                    font-weight: bold;
+                    span {
+                        color: $paua-400;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+        section {
+            min-height: 100px;
+            padding: 1rem;
+            width: 100%;
+            flex-direction: column;
+            aside {
+                text-align: center;
+                width: 100%;
+                padding: 0;
+            }
+        }
     }
 </style>
