@@ -2,6 +2,8 @@
 import { SuperForm, type ContactFormFields } from "../components/SuperForm";
 import Layout from "../layouts/NewLayout.astro";
 
+export const prerender = true;
+
 let formFields: ContactFormFields = {
     name: {
         tag: "INPUT",
