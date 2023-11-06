@@ -65,11 +65,11 @@ const pages: Page[] = [
         z-index: 1000;
 
         nav {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
             align-items: center;
-            padding-right: 2rem;
-            max-width: 1200px;
+            justify-items: center;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1400px;
             margin: 0 auto;
 
             .logo {
@@ -106,14 +106,13 @@ const pages: Page[] = [
                 aside {
                     display: none;
                     position: absolute;
-                    top: 1rem;
+                    top: 3rem;
                     right: 0;
                     border-bottom-left-radius: $border-radius;
                     background-color: $paua-bg;
 
                     nav {
                         ul {
-                            padding: 2rem 0;
                             width: 100%;
                             display: block;
                             li {
@@ -133,7 +132,7 @@ const pages: Page[] = [
                         font-weight: bold;
                         text-decoration: none;
                         &:hover {
-                            color: $paua-700;
+                            color: $paua-700;  
                         }
                         &.active {
                             color: $orange-crayola;
@@ -153,7 +152,8 @@ const pages: Page[] = [
     @media screen and (max-width: $mobile-breakpoint) {
         header {
             nav {
-                padding-right: 0.5rem;
+                display: flex;
+                justify-content: space-between;
                 ul {
                     li.menu-trigger:hover ~ aside,
                     aside:hover {
