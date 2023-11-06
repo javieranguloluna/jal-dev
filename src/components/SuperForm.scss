@@ -120,6 +120,12 @@
         outline: solid 2px $paua-800;
     }
 
+    &:disabled {
+        cursor: default;
+        color: $paua-light-grey;
+        border-color: $paua-light-grey;
+        background-color: $paua-dark-grey;
+    }
 
     &.loading {
         border-color: $orange-crayola;
@@ -137,14 +143,6 @@
         color: $ts-green;
         cursor: default;
     }
-
-    &:disabled {
-        cursor: default;
-        color: $paua-light-grey;
-        border-color: $paua-light-grey;
-        background-color: $paua-dark-grey;
-    }
-
 
 }
 
