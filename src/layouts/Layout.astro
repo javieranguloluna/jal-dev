@@ -9,9 +9,10 @@ import Footer from "../components/Footer.astro";
 
 interface Props {
     title?: string;
+    path: string;
 }
 
-const { title } = Astro.props;
+const { title, path } = Astro.props;
 
 const slideUpAnimation: TransitionAnimation = {
   name: "fadeOutUp",
@@ -51,7 +52,7 @@ const slideTransition: TransitionDirectionalAnimations = {
         <ViewTransitions />
     </head>
     <body>
-        <Nav/>
+        <Nav path={path}/>
         <main>
             {title && <h1 transition:animate={slideTransition}>{title}</h1>}
             <slot />

@@ -1,13 +1,17 @@
 ---
 import RRSS from './rrss.astro';
 
+interface Props {
+    path: string;
+}
+
+const { path } = Astro.props;
+
 type Page = {
     pathname: string;
     label: string;
     class: string;
 };
-
-console.log(Astro.url, Astro.url.pathname);
 
 const pages: Page[] = [
     { pathname: "/projects", label: "proyectos", class: "" },
@@ -15,7 +19,7 @@ const pages: Page[] = [
     { pathname: "/contact", label: "contacto", class: "" },
 ].map(p => ({
     ...p,
-    class: `${p.class} ${Astro.url.pathname === p.pathname ? 'active' : ''}`
+    class: `${p.class} ${path === p.pathname ? 'active' : ''}`
 }))
 
 ---
