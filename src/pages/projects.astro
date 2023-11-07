@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 
+import rentateslabyronLogo from "../../public/images/rentateslabyron-logo.webp";
 import simonettaLogo from "../../public/images/Simonetta-logo-Black.webp";
 import npmLogo from "../../public/images/npm_icon_213005.png";
 import shopinLogo from "../../public/images/shopin-logo.png";
@@ -11,6 +12,21 @@ import mandelbrotLogo from "../../public/images/mandelbrot.png";
 export const prerender = true;
 
 const proyects = [
+{
+        name: "Rent a Tesla Byron",
+        link: "https://rentateslabyron.com.au/",
+        logo: rentateslabyronLogo,
+        style: "background-color: white;",
+        content:
+            "Empresa de alquiler de vehiculos Tesla en Byron Bay, Australia",
+        techs: [
+            { class: "platform", text: "Vercel" },
+            { class: "framework", text: "Astro" },
+            { class: "language", text: "Typescript" },
+            { class: "language", text: "HTML" },
+            { class: "language", text: "CSS" },
+        ],
+    },
     {
         name: "Simonetta Floral",
         link: "https://simonettafloral.com/",
@@ -22,7 +38,7 @@ const proyects = [
             { class: "platform", text: "Shopify" },
             { class: "language", text: "Javascript" },
             { class: "language", text: "HTML" },
-            { class: "language", text: "CSS" }
+            { class: "language", text: "CSS" },
         ],
     },
     {
@@ -86,25 +102,28 @@ const proyects = [
     },
 ];
 ---
+
 <Layout title="Proyectos">
     {
         proyects.map((p) => (
-            <a href={p.link} target="_blank" class="card">
-                <h2 class="card-title">
-                    <div class="image" style={p.style}>
-                        <Image src={p.logo} alt={p.name + " logo"} />
+            <section>
+                <a href={p.link} target="_blank" class="card">
+                    <h2 class="card-title">
+                        <div class="image" style={p.style}>
+                            <Image src={p.logo} alt={p.name + " logo"} />
+                        </div>
+                        {p.name}
+                    </h2>
+                    <div class="card-content">
+                        <p>{p.content}</p>
+                        <div class="techs">
+                            {p.techs.map((t) => (
+                                <span class={`tech ${t.class}`}>{t.text}</span>
+                            ))}
+                        </div>
                     </div>
-                    {p.name}
-                </h2>
-                <div class="card-content">
-                    <p>{p.content}</p>
-                    <div class="techs">
-                        {p.techs.map((t) => (
-                            <span class={`tech ${t.class}`}>{t.text}</span>
-                        ))}
-                    </div>
-                </div>
-            </a>
+                </a>
+            </section>
         ))
     }
 </Layout>
@@ -112,91 +131,94 @@ const proyects = [
 <style lang="scss">
     @import "../styles/global.scss";
 
-    a.card {
-        display: flex;
-        flex-direction: column;
-        text-decoration: none;
-        padding: 1rem;
-        margin: 2rem auto;
+    section {
         max-width: 700px;
-        color: $paua-50;
-        background-color: $paua-bg;
-        border-radius: $border-radius;
-        cursor: pointer;
-        box-shadow: 0px 0px 5px 3px $paua-dark-grey;
-        transition:
-            transform 0.3s ease-in-out,
-            box-shadow 0.3s ease-in-out;
-
-        .card-title {
+        margin-inline: auto;
+        a.card {
             display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 1rem;
-            color: $paua-400;
-            .image {
-                display: inline-block;
-                border-radius: $border-radius;
-                overflow: hidden;
-                box-sizing: border-box;
-                width: 6rem;
-                height: 6rem;
-                min-width: 6rem;
-                min-height: 6rem;
-                max-width: 6rem;
-                max-height: 6rem;
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
-        }
-        .card-content {
-            margin: 1rem 0;
+            flex-direction: column;
+            text-decoration: none;
+            padding: 1rem;
+            margin: 2rem auto;
+            color: $paua-50;
+            background-color: $paua-bg;
+            border-radius: $border-radius;
+            cursor: pointer;
+            box-shadow: 0px 0px 5px 3px $paua-dark-grey;
+            transition:
+                transform 0.3s ease-in-out,
+                box-shadow 0.3s ease-in-out;
 
-            .techs {
+            &:hover {
+                transform: scale(1.01);
+                box-shadow: 0px 0px 5px 3px $orange-crayola;
+            }
+
+            .card-title {
                 display: flex;
-                gap: 0.4rem;
-                flex-wrap: wrap;
-                margin-top: 1rem;
-                .tech {
-                    padding: 0.2rem 0.8rem;
-                    border-radius: 20px;
-                    line-height: 1rem;
+                flex-direction: row;
+                align-items: center;
+                gap: 1rem;
+                color: $paua-400;
+                .image {
+                    display: inline-block;
+                    border-radius: $border-radius;
+                    overflow: hidden;
+                    box-sizing: border-box;
+                    width: 6rem;
+                    height: 6rem;
+                    min-width: 6rem;
+                    min-height: 6rem;
+                    max-width: 6rem;
+                    max-height: 6rem;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
                 }
+            }
+            .card-content {
+                margin: 1rem 0;
 
-                .platform {
-                    border: solid 2px $ts-orange;
-                }
-                .language {
-                    background-color: $ts-green;
-                }
-                .workspace {
-                    background-color: $ts-blue;
-                }
-                .framework {
-                    background-color: $ts-pink;
-                }
-                .lib {
-                    border: solid 2px white;
-                }
-                .API {
-                    border: solid 2px $ts-yellow;
+                .techs {
+                    display: flex;
+                    gap: 0.4rem;
+                    flex-wrap: wrap;
+                    margin-top: 1rem;
+                    .tech {
+                        padding: 0.2rem 0.8rem;
+                        border-radius: 20px;
+                        line-height: 1rem;
+                    }
+
+                    .platform {
+                        border: solid 2px $ts-orange;
+                    }
+                    .language {
+                        background-color: $ts-green;
+                    }
+                    .workspace {
+                        background-color: $ts-blue;
+                    }
+                    .framework {
+                        background-color: $ts-pink;
+                    }
+                    .lib {
+                        border: solid 2px white;
+                    }
+                    .API {
+                        border: solid 2px $ts-yellow;
+                    }
                 }
             }
         }
-    }
-
-    a.card:hover {
-        transform: scale(1.01);
-        box-shadow: 0px 0px 5px 3px $orange-crayola;
     }
 
     @media screen and (max-width: 700px) {
         a.card {
             margin: 2rem 1rem;
-            
+
             h2.card-title {
                 font-size: 2rem;
             }
