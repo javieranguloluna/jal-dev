@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import { Client } from "@notionhq/client";
 
-export const prerender = true;
+// export const prerender = true;
 
 const NOTION_API_KEY = import.meta.env.NOTION_API_KEY;
 const NOTION_DATABASE_ID = import.meta.env.NOTION_DATABASE_ID;
