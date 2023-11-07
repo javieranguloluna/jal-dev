@@ -61,6 +61,7 @@ const pages: Page[] = [
         top: 0;
         left: 0;
         width: 100%;
+        max-width: 1000px;
         background-color: $paua-bg;
         z-index: 1000;
 
@@ -68,7 +69,7 @@ const pages: Page[] = [
             display: grid;
             align-items: center;
             justify-items: center;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr repeat(5, 1fr) 1fr;
             max-width: 1400px;
             margin: 0 auto;
 
@@ -102,6 +103,7 @@ const pages: Page[] = [
                 gap: 1rem;
                 margin: 0;
                 padding: 0;
+                grid-column: 2 / 7;
 
                 aside {
                     display: none;

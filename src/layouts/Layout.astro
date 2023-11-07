@@ -83,16 +83,17 @@ const slideTransition: TransitionDirectionalAnimations = {
         body {
             display: flex;
             flex-direction: column;
+            align-items: center;
             min-height: 100svh;
             background-color: $paua-bg;
 
             main {
                 flex-grow: 1;
+                width: 100%;
                 max-width: 900px;
-                margin-inline: auto;
                 h1 {
                     color: $paua-400;
-                    margin-inline: 1rem;
+                    margin: 1rem;
                 }
             }
 
