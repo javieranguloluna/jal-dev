@@ -10,7 +10,5 @@ export default defineConfig({
     domains: ["jal-dev.vercel.app"]
   },
   output: "server",
-  adapter: vercel({
-    functionPerRoute: true
-  })
+  adapter: vercel()
 });
