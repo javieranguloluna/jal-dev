@@ -10,7 +10,7 @@ const elements = [
         year: "2008 - 2009",
         type: "Formación",
         history:
-            "Soy un programador autodidacta y apasionado con un enfoque especial en el frontend. La informática ha sido un pilar influencial en mi vida, desde una temprana edad he estado inmerso en la programación. Durante esta fase inicial de mi crecimiento profesional, cursé el primer año del FP de Desarrollo de Aplicaciones Informáticas (DAI) que dejó una huella significativa en mi camino hacia la industria tecnológica.",
+            "La informática ha sido un pilar influencial en mi vida, desde una temprana edad he estado inmerso en la programación. Durante esta fase inicial de mi crecimiento profesional, cursé el primer año del FP de Desarrollo de Aplicaciones Informáticas (DAI) que dejó una huella significativa en mi camino hacia la industria tecnológica.",
     },
     {
         title: "StartUp Cofunder & CTO",
@@ -91,10 +91,10 @@ const elements = [
     @import "../styles/global.scss";
 
     article {
-        margin: 2rem auto;
-
         section {
             width: 100%;
+            max-width: 800px;
+            margin-inline: auto;
             display: flex;
             align-items: center;
 
@@ -110,7 +110,7 @@ const elements = [
                 align-items: center;
 
                 padding: 1rem;
-                margin: 1rem;
+                margin: 0 1rem;
 
                 background-color: $paua-bg;
                 border-radius: $border-radius;
@@ -160,7 +160,7 @@ const elements = [
         & > section > .console {
             background-color: transparent;
             border: solid 2px $orange-crayola;
-            margin-inline: 0;
+            margin-inline: 1rem;
         }
     }
 
@@ -180,6 +180,9 @@ const elements = [
                     margin: 0;
                     width: 100%;
                 }
+            }
+            & > section > .console {
+                margin-inline: 0;
             }
         }
 
