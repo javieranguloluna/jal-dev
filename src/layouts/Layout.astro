@@ -51,7 +51,7 @@ const slideTransition: TransitionDirectionalAnimations = {
         <ViewTransitions />
     </head>
     <body>
-        <Nav />
+        <Nav client:idle/>
         <main>
             {title && <h1 transition:animate={slideTransition}>{title}</h1>}
             <slot />

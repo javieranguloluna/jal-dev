@@ -7,6 +7,8 @@ type Page = {
     class: string;
 };
 
+console.log(Astro.url, Astro.url.pathname);
+
 const pages: Page[] = [
     { pathname: "/projects", label: "proyectos", class: "" },
     { pathname: "/about", label: "sobre mi", class: "" },
