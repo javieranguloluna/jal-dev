@@ -6,6 +6,7 @@ import RRSS from "./rrss.astro";
     <section>
         <RRSS />
     </section>
+    <p>{Astro.url.pathname}</p>
     {Astro.url.pathname !== '/contact' &&
         <section>
             <a class="cta" href="/contact">Contactar</a>
