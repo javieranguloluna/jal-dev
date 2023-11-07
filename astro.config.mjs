@@ -10,17 +10,5 @@ export default defineConfig({
     domains: ["jal-dev.vercel.app"]
   },
   output: "server",
-  adapter: vercel(
-    {
-      "routes": [
-        { handle: "filesystem" },
-        { 
-          src: "/(.*)",
-          status: 404,
-          methods: ["GET"],
-          dest: "/404.html"
-        }
-      ]
-    }
-  )
+  adapter: vercel()
 });
