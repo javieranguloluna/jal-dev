@@ -43,6 +43,31 @@ $primary: $ts-green;
 $secondary: $ts-blue;
 $accent: $ts-pink;
 
+$jal-blue: #07112C;
+$jal-green: #50FBE2;
+$jal-purple: #566EB4;
+$jal-pink: #CD74B6;
+
+$paua-bg: #18181B;
+$paua-dark-grey: #424242;
+$paua-light-grey: #7B7B7B;
+
+$paua-50: #f1f1ff;
+$paua-100: #e7e5ff;
+$paua-200: #d0ceff;
+$paua-300: #aea7ff;
+$paua-400: #8776ff;
+$paua-500: #613fff;
+$paua-600: #4e18ff;
+$paua-700: #3f07fa;
+$paua-800: #3405d2;
+$paua-900: #2c06ac;
+$paua-950: #12005e;
+
+
+$border-radius: 8px;
+$mobile-breakpoint: 700px;
+
 .white {
 	color: $text;
 }
@@ -53,7 +78,6 @@ $accent: $ts-pink;
 		font-family: "IBM Plex Mono";
 		font-weight: 400;
 		color: $text;
-		background-color: $background;
 		margin: 0;
 	}
 
@@ -66,8 +90,6 @@ $accent: $ts-pink;
 		font-weight: 700;
 		margin-block-end: 0.5rem;
 		margin-block-start: 0.5rem;
-
-		color: $secondary;
 	}
 
 	p {
@@ -106,11 +128,26 @@ $accent: $ts-pink;
 	.console {
         padding: 1rem;
         margin: 2rem 0;
-        color: white;
+        color: $paua-50;
         font-weight: 700;
-        background-color: #222;
+        background-color: $paua-dark-grey;
         border-radius: $border-radius;
     }
+
+	a.cta {
+		box-sizing: border-box;
+		display: inline-block;
+		text-decoration: none;
+		text-align: center;
+		background-color: $paua-bg;
+		color: $orange-crayola;
+		border: solid 2px $orange-crayola;
+		border-radius: $border-radius;
+		padding: 0.75rem 0;
+		font-weight: bold;
+		font-size: 1rem;
+		width: 100%;
+	}
 
 	@media screen and (max-width: 700px) {
 		h1 {

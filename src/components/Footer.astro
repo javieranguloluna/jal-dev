@@ -1,0 +1,46 @@
+---
+import RRSS from "./rrss.astro";
+---
+
+<footer>
+    <section>
+        <RRSS />
+    </section>
+    {Astro.url.pathname !== '/contact' &&
+        <section>
+            <a class="cta" href="/contact">Contactar</a>
+        </section>
+    }
+    <section>
+        <p>&copy; 2023 jal-dev</p>
+    </section>
+</footer>
+
+<style lang="scss">
+    @import "../styles/global.scss";
+
+    footer {
+        box-sizing: border-box;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 1rem;
+        width: 100%;
+        color: $paua-light-grey;
+        background-color: $paua-bg;
+        box-shadow: 0 0 3px $paua-dark-grey;
+
+        section {
+            padding: 0.3rem;
+            a {
+                padding-inline: 2rem;
+            }
+        }
+    }
+    @media screen and (max-width: $mobile-breakpoint) {
+        footer {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

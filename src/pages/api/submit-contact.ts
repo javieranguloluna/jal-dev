@@ -1,24 +1,22 @@
 import type { APIRoute } from "astro";
+import { Client } from "@notionhq/client";
 
-export const prerrender = true;
+export const prerender = true;
 
-const sendForm = (fields: any): any => {
-    var myHeaders = new Headers();
-    myHeaders.append("notion-version", "2022-06-28");
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append(
-        "Authorization",
-        "Bearer secret_7m26h14EGjUpRwG3oyqOqoMh0kDU5gNuCPZb5tjDWse",
-    );
-    myHeaders.append(
-        "Cookie",
-        "__cf_bm=yjRq5D3BEItBYXbI3Oob934OyL5UKbchT_cF0_B0K5Q-1697542457-0-AQFlk3dTZ3e2uznjKBen+hK8NqUizeTZE8bQ/40/ewYb/63pS/p48NvK1WCaIDdp2EIMCGXDIAuny6K4CPF+Z1o=",
-    );
+const NOTION_API_KEY = import.meta.env.NOTION_API_KEY;
+const NOTION_DATABASE_ID = import.meta.env.NOTION_DATABASE_ID;
+const NOTION_USER_ID = import.meta.env.NOTION_USER_ID;
 
-    var raw = JSON.stringify({
+const notion = new Client({
+    auth: NOTION_API_KEY,
+});
+
+const sendForm = async (fields: any) => {
+
+    return notion.pages.create({
         parent: {
             type: "database_id",
-            database_id: "2a161a0f40b947709bd38855e99069a8",
+            database_id: NOTION_DATABASE_ID,
         },
         properties: {
             Name: {
@@ -43,16 +41,17 @@ const sendForm = (fields: any): any => {
                 type: "rich_text",
                 rich_text: [{ text: { content: fields.message.value } }],
             },
+            Person: {
+                type: "people",
+                people: [
+                    {
+                        object: "user",
+                        id: NOTION_USER_ID
+                    }
+                ]
+            }
         },
-    });
-
-    var requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-    };
-
-    return fetch("https://api.notion.com/v1/pages", requestOptions)
+    })
 };
 
 
@@ -62,17 +61,13 @@ export const POST: APIRoute = async ({ request }) => {
 
     try {
         const data = await request.json();
-
-        const notion = await sendForm(data)
-        const jsonNotion = await notion.json()
-        return new Response(JSON.stringify({notion: jsonNotion})
+        const notionResponse = await sendForm(data)
+        return new Response(JSON.stringify({notionId: notionResponse.id})
         )
 
     } catch (error) {
-
-        return new Response(JSON.stringify({error}))
+        console.error(error)
+        return new Response(JSON.stringify({error: 'error in form api'}))
     }
-
-
 
 }

@@ -1,24 +1,22 @@
 ---
-import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
 
-import logo from "../../../public/favicon.svg";
-import js from "../../../public/images/JavaScript-logo.png";
-import ts from "../../../public/images/Typescript_logo_2020.svg.png";
-import html from "../../../public/images/html-logo.png";
-import css from "../../../public/images/CSS3_logo.svg.png";
-import angular from "../../../public/images/Angular_full_color_logo.svg.png";
-import git from "../../../public/images/Git-Icon-1788C.png";
-import rxjs from "../../../public/images/Rx_Logo-512-512.png";
-import ngrx from "../../../public/images/ngrx.svg";
-import firebase from "../../../public/images/firebase-logo.png";
-import ionic from "../../../public/images/ionic.avif";
-import nestjs from "../../../public/images/NestJS.svg.png";
-import shopify from "../../../public/images/shopify-logo-png-transparent.png";
-import wordpress from "../../../public/images/Wordpress_Blue_logo.png";
-import node from "../../../public/images/nodejs-logo.png";
-import react from "../../../public/images/React-icon.svg.png";
-import astro from "../../../public/images/astro-icon.png";
+import js from "../../public/images/JavaScript-logo.png";
+import ts from "../../public/images/Typescript_logo_2020.svg.png";
+import html from "../../public/images/html-logo.png";
+import css from "../../public/images/CSS3_logo.svg.png";
+import angular from "../../public/images/Angular_full_color_logo.svg.png";
+import git from "../../public/images/Git-Icon-1788C.png";
+import rxjs from "../../public/images/Rx_Logo-512-512.png";
+import ngrx from "../../public/images/ngrx.svg";
+import firebase from "../../public/images/firebase-logo.png";
+import ionic from "../../public/images/ionic.avif";
+import nestjs from "../../public/images/NestJS.svg.png";
+import shopify from "../../public/images/shopify-logo-png-transparent.png";
+import wordpress from "../../public/images/Wordpress_Blue_logo.png";
+import node from "../../public/images/nodejs-logo.png";
+import react from "../../public/images/React-icon.svg.png";
+import astro from "../../public/images/astro-icon.png";
 
 export const prerender = true;
 
@@ -112,10 +110,11 @@ const techs: Tech[] = [
 ];
 ---
 
-<Layout title="Tecnologías">
-    <div class="tech-wrapper">
+<section>
+    <h2>Tecnologías</h2>
+    <div class="wrapper">
         {
-            techs.map((tech) => (
+            techs.sort((a, b) => a.level > b.level ? -1 : 1).map((tech) => (
                 <div class="tech">
                     <div class="header">
                         <Image
@@ -131,20 +130,24 @@ const techs: Tech[] = [
             ))
         }
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-</Layout>
+</section>
 
 <style lang="scss">
-    @import "../../styles/global.scss";
+    @import "../styles/global.scss";
 
-    .tech-wrapper {
+    section {
+        margin: 2rem auto;
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            color: $paua-400;
+            margin-bottom: 2rem;
+        }
+        .wrapper {
+
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-
         .tech {
             padding: 1rem;
             margin: 1rem;
@@ -155,11 +158,11 @@ const techs: Tech[] = [
             flex-wrap: wrap;
             flex-direction: column;
 
-            background-color: #111;
+            background-color: $paua-bg;
             border-radius: $border-radius;
 
             cursor: default;
-            box-shadow: 0px 0px 5px $secondary;
+            box-shadow: 0px 0px 5px 3px $paua-dark-grey;
             transition:
                 transform 0.3s ease-in-out,
                 box-shadow 0.3s ease-in-out;
@@ -167,14 +170,20 @@ const techs: Tech[] = [
             animation: reveal ease-in-out both;
             animation-timeline: view();
 
+            &:hover {
+            transform: scale(1.01);
+            box-shadow: 0px 0px 5px 3px $orange-crayola;
+        }
             .header {
                 display: flex;
                 gap: 1rem;
                 align-items: center;
                 margin-bottom: 1rem;
-
                 img {
                     border-radius: $border-radius;
+                }
+
+                span {
                 }
             }
 
@@ -191,17 +200,32 @@ const techs: Tech[] = [
                     height: 5px;
                     border-radius: $border-radius;
                     border: solid 1px $ts-green;
-
                 }
             }
         }
-
-        .tech:hover {
-            transform: scale(1.01);
-            box-shadow: 0px 0px 10px $primary;
+            
         }
     }
 
+    @media screen and (max-width: 700px) {
+		section .wrapper .tech {
+			width: 7rem;
+            margin: 0.7rem;
+            .header {
+                gap: 0.5rem;
+
+                span {
+                    font-size: 13px;
+                }
+
+                img {
+                    width: 25px;
+                    height: 25px;
+                    border-radius: $border-radius;
+                }
+            }
+		}
+    }
 
     @keyframes reveal {
         from {
@@ -221,44 +245,4 @@ const techs: Tech[] = [
             scale: 1;
         }
     }
-
-    @media screen and (max-width: 700px) {
-		.tech-wrapper .tech {
-			width: 7rem;
-            margin: 0.4rem;
-            .header {
-                gap: 0.5rem;
-
-                span {
-                    font-size: 13px;
-                }
-
-                img {
-                    width: 25px;
-                    height: 25px;
-                    border-radius: $border-radius;
-                }
-            }
-		}
-
-        @keyframes reveal {
-            from {
-                opacity: 0;
-                scale: 0.8;
-            }
-            to {
-                opacity: 1;
-                scale: 1;
-            }
-            5% {
-                opacity: 0;
-                scale: 0.8;
-            }
-            10% {
-                opacity: 1;
-                scale: 1;
-            }
-        }
-	}
-
 </style>

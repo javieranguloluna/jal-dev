@@ -1,13 +1,14 @@
 ---
 import type {
-  TransitionAnimation,
-  TransitionDirectionalAnimations,
+    TransitionAnimation,
+    TransitionDirectionalAnimations,
 } from "astro";
 import { ViewTransitions } from "astro:transitions";
 import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
-  title: string;
+    title?: string;
 }
 
 const { title } = Astro.props;
@@ -40,53 +41,81 @@ const slideTransition: TransitionDirectionalAnimations = {
 
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <ViewTransitions />
-  </head>
-  <body>
-    <Nav />
-    <main>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="JAL | Junior Frontend Javasript Developer" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/png" href="/jal-favicon.png" />
+        <meta name="generator" content={Astro.generator} />
+        <title>JAL Dev{title && ` | ${title}`}</title>
+        <ViewTransitions />
+    </head>
+    <body>
+        <Nav />
+        <main>
+            {title && <h1 transition:animate={slideTransition}>{title}</h1>}
+            <slot />
+        </main>
+        <Footer />
+    </body><style is:global lang="scss">
+        @import "../styles/global.scss";
+        * {
+            // /* width */
+            ::-webkit-scrollbar {
+                width: 10px;
+            }
 
-      <h1 transition:animate={slideTransition}>{title}</h1>
+            /* Track */
+            ::-webkit-scrollbar-track {
+                background: $paua-dark-grey;
+            }
 
-      <slot />
-    </main>
-  </body><style is:global lang="scss">
-    @import "../styles/global.scss";
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+                background: $paua-light-grey;
+                border-radius: $border-radius;
+            }
+        }
+        html {
+            scrollbar-gutter: stable;
+            overflow-y: scroll;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100svh;
+            background-color: $paua-bg;
 
-    html {
-      scrollbar-gutter: stable;
-    }
+            main {
+                flex-grow: 1;
+                width: 100%;
+                max-width: 900px;
+                h1 {
+                    color: $paua-400;
+                    margin: 1rem;
+                }
+            }
 
-    main {
-      margin: auto;
-      padding: 1rem;
-      width: 800px;
-      max-width: calc(100% - 2rem);
+            .mobile-only {
+                display: none;
+            }
+            // .mobile-hidden {
+            //     display: block;
+            // }
+        }
 
-      h1 {
-        margin-left: 1rem;
-        margin-top: 1rem;
-        z-index: 10;
-        position: relative;
-      }
-    }
-
-    @media screen and (max-width: 700px) {
-      main {
-        max-width: calc(100% - 1rem);
-        padding: 1rem 0.5rem 1rem 0.5rem;
-        margin: 0;
-      }
-    }
-
-    @keyframes fadeOutUp {
+        @media screen and (max-width: $mobile-breakpoint) {
+            body {
+                .mobile-only {
+                    display: block;
+                }
+                .mobile-hidden {
+                    display: none !important;
+                }
+            }
+        }
+        @keyframes fadeOutUp {
       from {
         transform: translateY(0);
       }
@@ -117,5 +146,5 @@ const slideTransition: TransitionDirectionalAnimations = {
         opacity: 1;
       }
     }
-  </style>
+    </style>
 </html>

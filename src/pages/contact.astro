@@ -9,6 +9,7 @@ let formFields: ContactFormFields = {
         tag: "INPUT",
         atts: { type: "text", required: true },
         errors: null,
+        label: "Nombre",
         name: "name",
         value: "",
         valid: false,
@@ -17,6 +18,7 @@ let formFields: ContactFormFields = {
         tag: "INPUT",
         atts: { type: "email", required: true },
         errors: null,
+        label: "Email",
         name: "email",
         value: "",
         valid: false,
@@ -25,6 +27,7 @@ let formFields: ContactFormFields = {
         tag: "INPUT",
         atts: { type: "tel", required: true },
         errors: null,
+        label: "Teléfono",
         name: "phone",
         value: "",
         valid: false,
@@ -33,6 +36,7 @@ let formFields: ContactFormFields = {
         tag: "SELECT",
         atts: { type: "text", required: true },
         errors: null,
+        label: "Contacto",
         name: "contact",
         value: "",
         options: [
@@ -46,16 +50,37 @@ let formFields: ContactFormFields = {
         tag: "TEXTAREA",
         atts: { required: true },
         errors: null,
+        label: "Mensaje",
         name: "message",
         value: "",
         valid: false,
     },
 };
-
 ---
 
 <Layout title="Contacto">
-    <SuperForm client:visible fields={formFields} />
+    <section>
+        <p>
+            Ya séas una empresa o un particular, si estas pensando en contratar
+            mis servicios o si simplemente quieres enviarme un mensaje, estoy a tu disposición a traves de esté formulario!
+        </p>
+    </section>
+    <SuperForm
+        client:visible
+        fields={formFields}
+        submitText="Enviar"
+        url="https://jal-dev.vercel.app/api/submit-contact"
+    />
 </Layout>
 
-<style lang="scss"></style>
+<style lang="scss">
+    @import "../styles/global.scss";
+    section {
+        max-width: 600px;
+        margin-inline: auto;
+        p {
+            margin: 2rem auto;
+            max-width: 700px;
+        }
+    }
+</style>

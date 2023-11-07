@@ -1,0 +1,95 @@
+---
+import { Image } from "astro:assets";
+import picture from "../../public/images/_4f7181b3-46a5-4aa6-8d6e-59db58896b7f.jfif";
+---
+
+<section>
+    <aside>
+        <h1>Junior Frontend Javascript Developer</h1>
+        <a class="cta" href="/contact">Contactar</a>
+    </aside>
+    <Image src={picture} alt="jal" width="500" height="500" />
+</section>
+
+<style lang="scss">
+    @import "../styles/global.scss";
+    section {
+        box-sizing: border-box;
+        margin: 2rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: $border-radius;
+        padding: 2px;
+        min-height: 80svh;
+        width: 100%;
+        background: linear-gradient(120deg, $paua-50, $paua-200 10%, $paua-800);
+
+        img {
+            width: 50%;
+            height: 80svh;
+            border-top-right-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+            object-fit: cover;
+        }
+
+        aside {
+            margin: 2rem auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: space-around;
+            box-sizing: border-box;
+            border-top-left-radius: $border-radius;
+            border-bottom-left-radius: $border-radius;
+            width: 50%;
+            height: 80svh;
+            margin: 0;
+            background-color: $paua-bg;
+
+            h1 {
+                font-size: 2.7rem;
+                display: inline-block;
+                background: linear-gradient(
+                    130deg,
+                    $paua-100,
+                    $paua-200 10%,
+                    $paua-700 90%
+                );
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                -webkit-box-decoration-break: clone;
+            }
+        }
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+        section {
+            margin-top: 1rem;
+            width: calc(100% - 2rem);
+            flex-direction: column-reverse;
+            overflow: hidden;
+
+            img {
+                border-top-left-radius: $border-radius;
+                border-bottom-right-radius: 0;
+                width: 100%;
+                height: 50%;
+            } 
+            aside {                
+                border-top-left-radius: 0;
+                border-bottom-right-radius: $border-radius;;
+                width: 100%;
+                height: 50%;
+
+                h1 {
+                    line-height: 1.2;
+                    font-size: 2rem;
+                }
+
+            }
+        }
+    }
+</style>

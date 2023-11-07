@@ -1,376 +1,170 @@
 ---
-import { Image } from "astro:assets";
-import logo from '../../public/images/_41b68620-2219-40ca-95da-ef1804f5964e.jfif';
-import proyects from "../styles/icons/apps_FILL0_wght400_GRAD0_opsz24.svg";
-import cv from "../styles/icons/shield_person_FILL0_wght400_GRAD0_opsz24.svg";
-import history from "../styles/icons/update_FILL0_wght400_GRAD0_opsz24.svg";
-import timeline from "../styles/icons/timeline_FILL0_wght400_GRAD0_opsz24.svg";
-import techs from "../styles/icons/sort_FILL0_wght400_GRAD0_opsz24.svg";
-import contact from "../styles/icons/alternate_email_FILL0_wght400_GRAD0_opsz24.svg";
-import github from "../../public/images/github-mark-white.png";
-import linkedin from "../../public/images/linkedin-logo.png";
+import RRSS from './rrss.astro';
 
 type Page = {
-    name: string;
-    icon: ImageMetadata;
-    path: string;
-    childs?: Page[];
+    pathname: string;
+    label: string;
+    class: string;
 };
 
 const pages: Page[] = [
-    { name: "proyectos", path: "/projects", icon: proyects },
-    {
-        name: "cv",
-        icon: cv,
-        path: "/cv",
-        childs: [
-            { name: "historia", path: "/cv/history", icon: history },
-            { name: "timeline", path: "/cv/timeline", icon: timeline },
-            { name: "tecnologías", path: "/cv/techs", icon: techs },
-        ],
-    },
-    { name: "contacto", path: "/contact", icon: contact },
-];
+    { pathname: "/projects", label: "proyectos", class: "" },
+    { pathname: "/about", label: "sobre mi", class: "" },
+    { pathname: "/contact", label: "contacto", class: "" },
+].map(p => ({
+    ...p,
+    class: `${p.class} ${Astro.url.pathname === p.pathname ? 'active' : ''}`
+}))
+
 ---
 
-<nav class="nav">
-    <a class="logo" href="/">
-        <Image src={logo} alt="logo" width="350" height="350" />
-        <!-- <span class="text-logo">JAL</span> -->
-    </a>
-    <div class="menu">
-        {
-            pages.map((page) =>
-                page.childs ? (
-                    <div class="anchor">
-                        <Image
-                            src={page.icon}
-                            alt=""
-                            width="150"
-                            height="150"
-                        />
-                        <a href={page.path}>{page.name}</a>
-                        <span class="pink">()</span>
-                        <div class="submenu">
-                            {page.childs.map((child) => (
-                                <div class="subanchor">
-                                    <Image
-                                        src={child.icon}
-                                        alt=""
-                                        width="150"
-                                        height="150"
-                                    />
-                                    <a href={child.path}>{child.name}</a>
-                                    <span class="pink">()</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                ) : (
-                    <div class="anchor">
-                        <Image
-                            src={page.icon}
-                            alt=""
-                            width="150"
-                            height="150"
-                        />
-                        <a href={page.path}>{page.name}</a>
-                        <span class="pink">()</span>
-                    </div>
-                ),
-            )
-        }
-    </div>
-    <div class="mobile-menu">
-        <div class="menu-button">
-            <span>Menu</span>
-            <div class="menu-dropdown">
-                {
-                    pages.map((page) =>
-                        page.childs ? (
-                            <div class="anchor">
-                                <Image
-                                    src={page.icon}
-                                    alt=""
-                                    width="150"
-                                    height="150"
-                                />
-                                <a href={page.path}>{page.name}</a>
-                                <span class="pink">()</span>
-                                <div class="submenu">
-                                    {page.childs.map((child) => (
-                                        <div class="subanchor">
-                                            <Image
-                                                src={child.icon}
-                                                alt=""
-                                                width="150"
-                                                height="150"
-                                            />
-                                            <a href={child.path}>{child.name}</a>
-                                            <span class="pink">()</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        ) : (
-                            <div class="anchor">
-                                <Image
-                                    src={page.icon}
-                                    alt=""
-                                    width="150"
-                                    height="150"
-                                />
-                                <a href={page.path}>{page.name}</a>
-                                <span class="pink">()</span>
-                            </div>
-                        ),
-                    )
-                }
-                </div>
-        </div>
-
-    </div>
-    <div class="links">
-        <a href="https://www.linkedin.com/in/ja-luna-aa0782297/" target="_blank">
-            <Image class="inverted" src={linkedin} alt="linkedin" width="50" height="50" />
+<header>
+    <nav>
+        <a href="/" class="logo">
+            <span class="bracket">{`{`}</span>
+            <span class="jal">jal</span>
+            <span class="bracket">{`}`}</span>
         </a>
-        <a href="https://github.com/javieranguloluna" target="_blank">
-            <Image src={github} alt="github" width="50" height="50" />
-        </a>
-    </div>
-</nav>
+        <ul>
+            <li class="mobile-only menu-trigger">+</li>
+            <aside>
+                <nav>
+                    <ul>
+                        {
+                            pages.map((p) => (
+                                <li>
+                                    <a class={p.class} href={p.pathname}>{p.label}</a>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </nav>
+                <RRSS  classList="mobile"/>
+            </aside>
+            {
+                pages.map((p) => (
+                    <li class="mobile-hidden">
+                        <a class={p.class} href={p.pathname}>{p.label}</a>
+                    </li>
+                ))
+            }
+        </ul>
+        <RRSS classList="mobile-hidden"/>
+    </nav>
+</header>
 
 <style lang="scss">
     @import "../styles/global.scss";
 
-    .nav {
-        padding: 0 1rem 0 1rem;
-        background-color: $background;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
+    header {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-width: 1000px;
+        background-color: $paua-bg;
+        z-index: 1000;
 
-        z-index: 100;
-        position: relative;
+        nav {
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            grid-template-columns: 1fr repeat(5, 1fr) 1fr;
+            max-width: 1400px;
+            margin: 0 auto;
 
-        .text-logo {
-            font-size: 5rem;
-            font-weight: bolder;
-            color: $primary;
-        }
+            .logo {
+                color: $text;
+                text-decoration: none;
+                padding: 0.5rem 1rem;
+                font-size: 2rem;
 
-        .logo {
-            text-decoration: none;
-                width: 5rem;
-                height: 5rem;
-                overflow: hidden;
-                display: flex;
-    align-items: center;
-    justify-content: center;
-                border-radius: 100%;
-            img {
-                object-fit: contain;
-                width: 8rem;
-                height: 8rem;
-            }
-        }
+                .jal {
+                    background: linear-gradient(
+                        135deg,
+                        $paua-50,
+                        $paua-400
+                    );
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    -webkit-box-decoration-break: clone;
+                    font-weight: bold;
+                }
 
-        .mobile-menu {
-            display: none;
-        }
-
-        .menu {
-            display: flex;
-            flex-direction: row;
-            margin-right: 1rem;
-
-            .anchor {
-                display: flex;
-                align-items: center;
-                position: relative;
-                border-bottom: solid 3px $secondary;
-                margin: 0 1rem 0 1rem;
-                z-index: 10;
-
-                img {
-                    background-color: white;
-                    border-radius: $border-radius;
-                    width: 1.5rem;
-                    height: 1.5rem;
+                .bracket {
+                    font-weight: bold;
+                    color: $orange-crayola;
                 }
             }
 
-            a {
-                font-size: 1.3rem;
-                margin: 0 0 0 1rem;
-                color: $ts-yellow;
-                text-decoration: none;
-            }
+            ul {
+                display: inline-flex;
+                gap: 1rem;
+                margin: 0;
+                padding: 0;
+                grid-column: 2 / 7;
 
-            a:hover {
-                color: $accent;
-            }
-
-            .anchor:hover {
-                border-bottom: solid 3px $primary;
-
-                .submenu {
-                    display: flex;
-                    flex-direction: column;
-                    background-color: $background;
-                    border-left: solid 3px $primary;
-                    padding: 0.5rem;
+                aside {
+                    display: none;
                     position: absolute;
-                    top: calc(100% + 3px);
-                    left: -3px;
+                    top: 3rem;
+                    right: 0;
+                    border-bottom-left-radius: $border-radius;
+                    background-color: $paua-bg;
 
-                    .subanchor {
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        a {
-                            margin: 0.5rem;
-                            margin-right: 0;
+                    nav {
+                        ul {
+                            width: 100%;
+                            display: block;
+                            li {
+                                padding: 1rem 0;
+                            }
                         }
                     }
                 }
-            }
 
-            .anchor:hover:has(.submenu) {
-                border-left: solid 3px $primary;
-            }
+                li {
+                    list-style-type: none;
+                    padding: 0.5rem 1rem;
+                    color: $paua-900;
 
-            .submenu {
-                display: none;
-                z-index: 0;
-            }
-        }
-
-        .links {
-            display: flex;
-            flex-direction: row;
-            gap: 0.5rem;
-            a {
-                .inverted {
-                    filter: invert(100%);
-                }
-                img {
-                    width: 30px;
-                    height: 30px;
-                    border-radius: 100%;
-
-                    &:hover {
-                        box-shadow: 0px 0px 10px $secondary;
-                        transition:
-                            box-shadow 0.1s ease-in-out;
+                    a {
+                        color: $paua-400;
+                        font-weight: bold;
+                        text-decoration: none;
+                        &:hover {
+                            color: $paua-700;  
+                        }
+                        &.active {
+                            color: $orange-crayola;
+                        }
                     }
+
+                    &.menu-trigger {
+                        font-size: 2rem;
+                        color: $orange-crayola;
+                    }
+
                 }
             }
-
-
-
         }
     }
 
-    @media screen and (max-width: 700px) {
-        .nav {
-            .menu {
-                display: none;
-            }
-
-            .mobile-menu {
+    @media screen and (max-width: $mobile-breakpoint) {
+        header {
+            nav {
                 display: flex;
-                flex-direction: column;
-
-                .menu-button {
-                    padding: 1rem;
-                    .menu-dropdown {
-                        display: none;
-                    }
-                }
-
-                .menu-button:hover {
-                    border-right: solid 3px $secondary;
-                    .menu-dropdown {
-                        padding: 0 1rem;
-                        display: block;
-                        position: absolute;
-                        right: -0.5rem;
-                        top: calc(100% - 0.6rem);
-                        background-color: $background;
-                        border-top-left-radius: $border-radius;
-                        border-bottom-left-radius: $border-radius;
-
-
-                        :first-child:is(.anchor) {
-                            padding-top: 0.5rem;
-                        }
-                        :last-child:is(.anchor) {
-                            padding-top: 0.5rem;
-                        }
-                        
-                    }
-
-
-                }
-
-                .anchor {
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    align-items: flex-start;
-                    position: relative;
-                    border-right: solid 3px $secondary;
-                    padding: 0.3rem 0;
-                    z-index: 10;
-
-                    .pink {
-                        margin-top: 0.3rem;
-                    }
-            
-
-                    img {
-                        display: inline-block;
-                        background-color: white;
-                        border-radius: $border-radius;
-                        width: 1.5rem;
-                        height: 1.5rem;
-                    }
-                    .submenu {
+                justify-content: space-between;
+                ul {
+                    li.menu-trigger:hover ~ aside,
+                    aside:hover {
                         display: flex;
                         flex-direction: column;
-                        margin-top: 2rem;
-                        margin-right: 6px;
+                        align-items: center;
                     }
                 }
-
-                a {
-                font-size: 1.3rem;
-                margin: 0 0 0 1rem;
-                color: $ts-yellow;
-                text-decoration: none;
             }
-
-            a:hover {
-                color: $accent;
-            }
-
-            .anchor:hover {
-                border-right: solid 3px $primary;
-
-                .submenu {
-
-                    background-color: $background;
-                    border-right: solid 3px $primary;
-                        margin-right: 3px;
-
-                }
-            }
-            }
-
-
         }
     }
-
 </style>

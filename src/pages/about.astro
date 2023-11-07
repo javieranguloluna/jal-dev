@@ -1,0 +1,190 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
+
+const elements = [
+    {
+        title: "FP I DAI",
+        text: "Formación profesional de grado medio de Desarrollo de Aplicaciones Informáticas. *no concluido",
+        year: "2008 - 2009",
+        type: "Formación",
+        history:
+            "La informática ha sido un pilar influencial en mi vida, desde una temprana edad he estado inmerso en la programación. Durante esta fase inicial de mi crecimiento profesional, cursé el primer año del FP de Desarrollo de Aplicaciones Informáticas (DAI) que dejó una huella significativa en mi camino hacia la industria tecnológica.",
+    },
+    {
+        title: "StartUp Cofunder & CTO",
+        text: "Desarrollo de plataforma interna, aplicaciones y web blog para StartUp Conet Mascotas",
+        year: "2018 - 2020",
+        type: "Experiencia",
+        history:
+            "Mi viaje profesional tomó un giro interesante al fundar mi propia empresa, Conet Mascotas, combinando la Veterinaria y la Informática. Fue en este punto que volví a sumergirme en la programación, trabajando con tecnologías y lenguajes como Node.js, TypeScript y Angular. A pesar de los desafíos, encontré una satisfacción inmensa al navegar a través de este dualismo entre la veterinaria y la programación.",
+    },
+    {
+        title: "Shopin App",
+        text: "Desarrollo plataforma Hibrida en arquitectura monolitica con Nx + Angular + Ionic para StartUp",
+        year: "2022",
+        type: "Experiencia",
+        history:
+            "Me embarqué en este proyecto freelance en el que pude aplicar y mejorar continuamente mis habilidades de programación. La construcción de este proyecto de una sola pieza con Nrwl, Angular e Ionic, además del uso de Firebase para los servicios backend, supuso un aprendizaje significativo y una demostración de mi adaptabilidad a nuevas tecnologías y desafíos.",
+    },
+    {
+        title: "Frontend Developer Route",
+        text: "Formación en Open Bootcamp de repaso y reciclaje de Javascript, HTML, CSS, Angular, React, Git...",
+        year: "2022",
+        type: "Formación",
+        history:
+            "Continuamente busco oportunidades para desarrollar mis habilidades y mantenerme al día con las últimas tendencias y mejores prácticas en el mundo del desarrollo web. A lo largo de mi carrera, he demostrado una naturaleza autodidacta, una mentalidad de resiliencia y una habilidad notable para gestionar proyectos y trabajar de forma autónoma.",
+    },
+    {
+        title: "Simonetta Floral",
+        text: "Desarrollo web con Shopify para tienda online de ramos de flores preservadas",
+        year: "2022...",
+        type: "Experiencia",
+        history:
+            "Mi más reciente experiencia laboral con Simonetta me ha permitido adentrarme en el mundo del ecommerce en Shopify, trabajar con Liquid y fortalecer mis habilidades en JavaScript, HTML y CSS. Estas habilidades, combinadas con mi experiencia técnica, hacen de mí un valioso activo para cualquier equipo de desarrollo.",
+    },
+];
+---
+
+<Layout title="Sobre mi">
+    <article>
+        {
+            elements.map((el) => (
+                <section>
+                    <div class="content">
+                        <div class="badges">
+                            <span
+                                class={
+                                    el.type === "Formación"
+                                        ? "formation"
+                                        : "experience"
+                                }
+                            >
+                                {el.type}
+                            </span>
+                            <span>{el.year}</span>
+                        </div>
+                        <h4>{el.title}</h4>
+                        <p>{el.text}</p>
+                    </div>
+                    <div class="history-wrapper">
+                        <p class="console">> {el.history}</p>
+                    </div>
+                </section>
+            ))
+        }
+        <section>
+        <p class="console">
+            > Hoy, mi objetivo es encontrar un empleo estable donde pueda
+            ofrecer mis conocimientos y experiencia para ayudar a construir
+            soluciones tecnológicas innovadoras y eficaces. Estoy listo para <strong
+                >asumir nuevos retos</strong
+            >, aportar a un equipo y seguir aprendiendo en el
+            fascinante ámbito de la programación.
+        </p>
+    </section>
+    </article>
+</Layout>
+
+<style lang="scss">
+    @import "../styles/global.scss";
+
+    article {
+        section {
+            width: 100%;
+            max-width: 800px;
+            margin-inline: auto;
+            display: flex;
+            align-items: center;
+
+            &:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+
+            .content {
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                padding: 1rem;
+                margin: 0 1rem;
+
+                background-color: $paua-bg;
+                border-radius: $border-radius;
+
+                cursor: default;
+                box-shadow: 0px 0px 5px 3px $paua-dark-grey;
+
+                transition:
+                    transform 0.3s ease-in-out,
+                    box-shadow 0.3s ease-in-out;
+                
+                    h4 {
+                        color: $paua-300;
+                    }
+
+                &:hover {
+                    transform: scale(1.03);
+                    box-shadow: 0px 0px 5px 3px $orange-crayola;
+                }
+
+                div {
+                    width: max-content;
+                    margin-bottom: 1rem;
+                    span {
+                        border-radius: $border-radius;
+                        background-color: $ts-pink;
+                        padding: 0.2rem 0.5rem;
+                        margin-right: 1rem;
+                    }
+
+                    span.formation {
+                        background-color: $ts-yellow;
+                    }
+
+                    span.experience {
+                        background-color: $ts-blue;
+                    }
+                }
+            }
+
+            .history-wrapper {
+                width: 60%;
+                margin-inline: 1rem;
+            }
+        }
+
+        & > section > .console {
+            background-color: transparent;
+            border: solid 2px $orange-crayola;
+            margin-inline: 1rem;
+        }
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+        article {
+            section,
+            section:nth-child(even) {
+                box-sizing: border-box;
+                flex-direction: column;
+                padding-inline: 1rem;
+                .content {
+                    box-sizing: border-box;
+                    margin: 0;
+                    width: 100%;
+                }
+                .history-wrapper {
+                    margin: 0;
+                    width: 100%;
+                }
+            }
+            & > section > .console {
+                margin-inline: 0;
+            }
+        }
+
+    }
+</style>
