@@ -14,12 +14,12 @@ type Page = {
 };
 
 const pages: Page[] = [
-    { pathname: "/projects", label: "proyectos", class: "" },
-    { pathname: "/about", label: "sobre mi", class: "" },
-    { pathname: "/contact", label: "contacto", class: "" },
+    { pathname: "/projects/", label: "proyectos", class: "" },
+    { pathname: "/about/", label: "sobre mi", class: "" },
+    { pathname: "/contact/", label: "contacto", class: "" },
 ].map(p => ({
     ...p,
-    class: `${p.class} ${path === p.pathname ? 'active' : ''}`
+    class: `${p.class} ${Astro.url.pathname === p.pathname ? 'active' : ''}`
 }))
 
 ---
