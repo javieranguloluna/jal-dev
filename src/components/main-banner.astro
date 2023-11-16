@@ -5,7 +5,7 @@ import picture from "../../public/images/_4f7181b3-46a5-4aa6-8d6e-59db58896b7f.j
 
 <section>
     <aside>
-        <h1>Junior Frontend Javascript Developer</h1>
+        <h1>Frontend Javascript Developer</h1>
         <a class="cta" href="/contact">Contactar</a>
     </aside>
     <Image src={picture} alt="jal" width="500" height="500" />
@@ -21,6 +21,7 @@ import picture from "../../public/images/_4f7181b3-46a5-4aa6-8d6e-59db58896b7f.j
         justify-content: center;
         border-radius: $border-radius;
         padding: 2px;
+        height: calc(80svh + 4px);
         min-height: 80svh;
         width: calc(100% - 4rem);
         background: linear-gradient(120deg, $paua-50, $paua-200 10%, $paua-800);
@@ -39,7 +40,7 @@ import picture from "../../public/images/_4f7181b3-46a5-4aa6-8d6e-59db58896b7f.j
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            justify-content: space-around;
+            justify-content: space-evenly;
             box-sizing: border-box;
             border-top-left-radius: $border-radius;
             border-bottom-left-radius: $border-radius;
@@ -61,6 +62,11 @@ import picture from "../../public/images/_4f7181b3-46a5-4aa6-8d6e-59db58896b7f.j
                 background-clip: text;
                 -webkit-text-fill-color: transparent;
                 -webkit-box-decoration-break: clone;
+            }
+
+            a.cta {
+                margin-inline: 1rem;
+                width: calc(100% - 2rem);
             }
         }
     }
